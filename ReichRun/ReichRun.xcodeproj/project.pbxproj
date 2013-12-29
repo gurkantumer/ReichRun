@@ -127,9 +127,10 @@
 		739518451870CE4D00D0C970 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 739518441870CE4D00D0C970 /* vec4.c */; };
 		7395184A1870CE4D00D0C970 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 739518491870CE4D00D0C970 /* main.m */; };
 		7395184D1870CE4D00D0C970 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395184C1870CE4D00D0C970 /* AppDelegate.m */; };
-		739518501870CE4D00D0C970 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395184F1870CE4D00D0C970 /* HelloWorldLayer.m */; };
 		739518581870CFCE00D0C970 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739518571870CFCE00D0C970 /* GameKit.framework */; };
 		7395185A1870CFE100D0C970 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739518591870CFE100D0C970 /* StoreKit.framework */; };
+		739518601870D52200D0C970 /* LogoLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395185F1870D52200D0C970 /* LogoLayer.m */; };
+		739518641870D70600D0C970 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 739518631870D70600D0C970 /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -398,12 +399,13 @@
 		739518491870CE4D00D0C970 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7395184B1870CE4D00D0C970 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7395184C1870CE4D00D0C970 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7395184E1870CE4D00D0C970 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		7395184F1870CE4D00D0C970 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		739518561870CFAF00D0C970 /* ReichRun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ReichRun.entitlements; sourceTree = "<group>"; };
 		739518571870CFCE00D0C970 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		739518591870CFE100D0C970 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		7395185C1870D26F00D0C970 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Config.h; path = Helpers/Config.h; sourceTree = "<group>"; };
+		7395185E1870D52200D0C970 /* LogoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogoLayer.h; path = Layers/LogoLayer.h; sourceTree = "<group>"; };
+		7395185F1870D52200D0C970 /* LogoLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogoLayer.m; path = Layers/LogoLayer.m; sourceTree = "<group>"; };
+		739518631870D70600D0C970 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Resources/Images/misc/logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -474,6 +476,7 @@
 		739516C81870CE4C00D0C970 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				739518611870D6F500D0C970 /* Images */,
 				739518561870CFAF00D0C970 /* ReichRun.entitlements */,
 				739516D01870CE4C00D0C970 /* icon.icns */,
 				739516D21870CE4C00D0C970 /* Info.plist */,
@@ -856,8 +859,8 @@
 		7395185B1870D22B00D0C970 /* Layer */ = {
 			isa = PBXGroup;
 			children = (
-				7395184E1870CE4D00D0C970 /* HelloWorldLayer.h */,
-				7395184F1870CE4D00D0C970 /* HelloWorldLayer.m */,
+				7395185E1870D52200D0C970 /* LogoLayer.h */,
+				7395185F1870D52200D0C970 /* LogoLayer.m */,
 			);
 			name = Layer;
 			sourceTree = "<group>";
@@ -868,6 +871,22 @@
 				7395185C1870D26F00D0C970 /* Config.h */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		739518611870D6F500D0C970 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				739518621870D6FC00D0C970 /* Misc */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		739518621870D6FC00D0C970 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				739518631870D70600D0C970 /* logo.png */,
+			);
+			name = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -942,6 +961,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				739516CC1870CE4C00D0C970 /* InfoPlist.strings in Resources */,
+				739518641870D70600D0C970 /* logo.png in Resources */,
 				7395182B1870CE4D00D0C970 /* ChangeLog in Resources */,
 				739516CF1870CE4C00D0C970 /* MainMenu.xib in Resources */,
 				739516D11870CE4C00D0C970 /* icon.icns in Resources */,
@@ -1039,6 +1059,7 @@
 				739517A31870CE4D00D0C970 /* CCTMXTiledMap.m in Sources */,
 				739517641870CE4C00D0C970 /* CCRenderTexture.m in Sources */,
 				739516EC1870CE4C00D0C970 /* CCActionInterval.m in Sources */,
+				739518601870D52200D0C970 /* LogoLayer.m in Sources */,
 				7395175A1870CE4C00D0C970 /* CCPhysicsDebugNode.m in Sources */,
 				739516E01870CE4C00D0C970 /* CCActionEase.m in Sources */,
 				7395171D1870CE4C00D0C970 /* CCFontDefinition.m in Sources */,
@@ -1047,7 +1068,6 @@
 				739518311870CE4D00D0C970 /* matrix.c in Sources */,
 				739517171870CE4C00D0C970 /* CCDrawingPrimitives.m in Sources */,
 				7395177F1870CE4D00D0C970 /* ccShaders.m in Sources */,
-				739518501870CE4D00D0C970 /* HelloWorldLayer.m in Sources */,
 				739517D51870CE4D00D0C970 /* CCWindow.m in Sources */,
 				739517B31870CE4D00D0C970 /* cocos2d.m in Sources */,
 				739517601870CE4C00D0C970 /* CCProgressTimer.m in Sources */,

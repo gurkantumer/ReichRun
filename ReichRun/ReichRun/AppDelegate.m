@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "HelloWorldLayer.h"
+#import "LogoLayer.h"
 #import "Helpers/Config.h"
 
 @implementation ReichRunAppDelegate
@@ -28,7 +28,7 @@
 	
 	[window_ center];
 	
-	[director runWithScene:[HelloWorldLayer scene]];
+	[director runWithScene:[LogoLayer scene]];
     [director setFullScreen:kTOGGLE_FULLSCREEN];
 }
 
