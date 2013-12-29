@@ -128,6 +128,8 @@
 		7395184A1870CE4D00D0C970 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 739518491870CE4D00D0C970 /* main.m */; };
 		7395184D1870CE4D00D0C970 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395184C1870CE4D00D0C970 /* AppDelegate.m */; };
 		739518501870CE4D00D0C970 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395184F1870CE4D00D0C970 /* HelloWorldLayer.m */; };
+		739518581870CFCE00D0C970 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739518571870CFCE00D0C970 /* GameKit.framework */; };
+		7395185A1870CFE100D0C970 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739518591870CFE100D0C970 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -398,6 +400,10 @@
 		7395184C1870CE4D00D0C970 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7395184E1870CE4D00D0C970 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		7395184F1870CE4D00D0C970 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
+		739518561870CFAF00D0C970 /* ReichRun.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ReichRun.entitlements; sourceTree = "<group>"; };
+		739518571870CFCE00D0C970 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		739518591870CFE100D0C970 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		7395185C1870D26F00D0C970 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Config.h; path = Helpers/Config.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,6 +413,8 @@
 			files = (
 				739516C01870CE4C00D0C970 /* OpenAL.framework in Frameworks */,
 				739516C61870CE4C00D0C970 /* Foundation.framework in Frameworks */,
+				739518581870CFCE00D0C970 /* GameKit.framework in Frameworks */,
+				7395185A1870CFE100D0C970 /* StoreKit.framework in Frameworks */,
 				739516BC1870CE4C00D0C970 /* QuartzCore.framework in Frameworks */,
 				739516C41870CE4C00D0C970 /* AppKit.framework in Frameworks */,
 				739516BE1870CE4C00D0C970 /* OpenGL.framework in Frameworks */,
@@ -437,6 +445,8 @@
 		739516BA1870CE4C00D0C970 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				739518591870CFE100D0C970 /* StoreKit.framework */,
+				739518571870CFCE00D0C970 /* GameKit.framework */,
 				739516BB1870CE4C00D0C970 /* QuartzCore.framework */,
 				739516BD1870CE4C00D0C970 /* OpenGL.framework */,
 				739516BF1870CE4C00D0C970 /* OpenAL.framework */,
@@ -452,8 +462,8 @@
 			children = (
 				7395184B1870CE4D00D0C970 /* AppDelegate.h */,
 				7395184C1870CE4D00D0C970 /* AppDelegate.m */,
-				7395184E1870CE4D00D0C970 /* HelloWorldLayer.h */,
-				7395184F1870CE4D00D0C970 /* HelloWorldLayer.m */,
+				7395185B1870D22B00D0C970 /* Layer */,
+				7395185D1870D27400D0C970 /* Helpers */,
 				739516C81870CE4C00D0C970 /* Resources */,
 				739516D31870CE4C00D0C970 /* libs */,
 				739518471870CE4D00D0C970 /* Supporting Files */,
@@ -464,6 +474,7 @@
 		739516C81870CE4C00D0C970 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				739518561870CFAF00D0C970 /* ReichRun.entitlements */,
 				739516D01870CE4C00D0C970 /* icon.icns */,
 				739516D21870CE4C00D0C970 /* Info.plist */,
 				739516C91870CE4C00D0C970 /* English.lproj */,
@@ -842,6 +853,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7395185B1870D22B00D0C970 /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				7395184E1870CE4D00D0C970 /* HelloWorldLayer.h */,
+				7395184F1870CE4D00D0C970 /* HelloWorldLayer.m */,
+			);
+			name = Layer;
+			sourceTree = "<group>";
+		};
+		7395185D1870D27400D0C970 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7395185C1870D26F00D0C970 /* Config.h */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -870,6 +898,25 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Studio Nord";
+				TargetAttributes = {
+					739516B71870CE4C00D0C970 = {
+						DevelopmentTeam = LM826PFUMT;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = 739516B31870CE4C00D0C970 /* Build configuration list for PBXProject "ReichRun" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1090,6 +1137,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = ReichRun/ReichRun.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1102,6 +1152,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1110,6 +1161,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = ReichRun/ReichRun.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ReichRun/Prefix.pch;
@@ -1121,6 +1175,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

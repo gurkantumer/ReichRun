@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "HelloWorldLayer.h"
+#import "Helpers/Config.h"
 
 @implementation ReichRunAppDelegate
 @synthesize window=window_, glView=glView_;
@@ -17,23 +18,18 @@
 	CCDirectorMac *director = (CCDirectorMac*) [CCDirector sharedDirector];
 
 	// enable FPS and SPF
-	[director setDisplayStats:YES];
-	
-	// connect the OpenGL view with the director
+	[director setDisplayStats:kTOGGLE_DEBUG];
 	[director setView:glView_];
 
-	// EXPERIMENTAL stuff.
-	// 'Effects' don't work correctly when autoscale is turned on.
-	// Use kCCDirectorResize_NoScale if you don't want auto-scaling.
-	[director setResizeMode:kCCDirectorResize_AutoScale];
+	[director setResizeMode:kCCDirectorResize_NoScale];
 	
 	// Enable "moving" mouse event. Default no.
-	[window_ setAcceptsMouseMovedEvents:NO];
+	[window_ setAcceptsMouseMovedEvents:YES];
 	
-	// Center main window
 	[window_ center];
 	
 	[director runWithScene:[HelloWorldLayer scene]];
+    [director setFullScreen:kTOGGLE_FULLSCREEN];
 }
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed: (NSApplication *) theApplication
