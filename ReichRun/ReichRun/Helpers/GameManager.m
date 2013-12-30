@@ -17,6 +17,8 @@ static GameManager *manager = nil;
     if ((self = [super init]))
     {
         isKeyboardEnabled = NO;
+        isGamePlayable = YES;
+        isMouseEnabled = NO;
     }
     return self;
 }
@@ -33,7 +35,8 @@ static GameManager *manager = nil;
     }
 }
 
-
+#pragma mark GAME STATES
+// keyboard state
 - (BOOL) getKeyboardEnabledState
 {
     return isKeyboardEnabled;
@@ -42,6 +45,26 @@ static GameManager *manager = nil;
 - (void) setKeyboardEnabledState:(BOOL)state
 {
     isKeyboardEnabled = state;
+}
+// mouse state
+- (BOOL) getMouseEnabledState
+{
+    return isMouseEnabled;
+}
+
+- (void) setMouseEnabledState:(BOOL)state
+{
+    isMouseEnabled = state;
+}
+// game play state
+- (BOOL) getGameEnabledState
+{
+    return isGamePlayable;
+}
+
+- (void) setGameEnabledState:(BOOL)state
+{
+    isGamePlayable = state;
 }
 
 @end

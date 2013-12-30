@@ -12,12 +12,15 @@
 @implementation GameLayer
 
 @synthesize playerMovement;
+@synthesize player;
+@synthesize crossHair;
 
 -(id) init
 {
 	if( (self=[super init]) )
     {
-    
+        [NSCursor hide];
+        
         playerMovement = [[NSMutableArray alloc] init];
         [playerMovement addObject:@"NO"];
         [playerMovement addObject:@"NO"];
@@ -26,12 +29,28 @@
         
         isSpacePressed = NO;
         
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
+        self.contentSize = winSize;
+        
         [[GameManager sharedManager] setKeyboardEnabledState:YES];
+        [[GameManager sharedManager] setMouseEnabledState:YES];
+        [[GameManager sharedManager] setGameEnabledState:YES];
         
         CCLayerColor* colorLayer = [CCLayerColor layerWithColor:CC_GRAY];
+        colorLayer.tag = 3000;
         [self addChild:colorLayer z:0];
         
-        self.contentSize = CGSizeMake(self.contentSize.width, self.contentSize.height);
+        player = [[Player alloc] initWithFile:@"char.png"];
+        [player setPosition:CGPointMake(200, 200)];
+        [self addChild:player z:1];
+        
+        crossHair = [[CCSprite alloc] initWithFile:@"crosshair.png" rect:CGRectMake(winSize.width/2, winSize.height/2, 50, 50)];
+        [self addChild:crossHair z:2];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
+        
+        [self scheduleUpdate];
 	}
 	return self;
 }
@@ -45,9 +64,69 @@
 	return scene;
 }
 
-- (void)tick: (ccTime) dt
+- (void)windowDidResize:(NSNotification *)notification
 {
-    NSLog(@"tick");
+    self.contentSize = [[CCDirector sharedDirector] winSize];
+    CCLayerColor* colorLayer = (CCLayerColor *)[self getChildByTag:3000];
+    colorLayer.contentSize = self.contentSize;
+}
+
+- (void) update:(ccTime)dt
+{
+    if([[GameManager sharedManager] getGameEnabledState]){
+        // Get player current position
+        CGFloat playerPositionX = player.position.x;
+        CGFloat playerPositionY = player.position.y;
+        
+        // Up Arrow or W
+        if ([[playerMovement objectAtIndex:0] isEqualToString:@"YES"]) {
+            /*if (player.velocityY < player.maxSpeed) {
+                player.velocityY += player.acceleration;
+            }*/
+        }
+        // Down Arrow or S
+        if ([[playerMovement objectAtIndex:1] isEqualToString:@"YES"]) {
+            /*if (player.velocityY > 0 - player.maxi) {
+                player.velocityY -= player.acceleration;
+            }*/
+        }
+        // left Arrow or D
+        if ([[playerMovement objectAtIndex:2] isEqualToString:@"YES"]) {
+            //if (player.velx < player.maxi) { player.velx += player.acce; }
+        }
+        // Right Arrow or A
+        if ([[playerMovement objectAtIndex:3] isEqualToString:@"YES"]) {
+            //if (player.velx > 0 - player.maxi) { player.velx -= player.acce; }
+        }
+        
+        // Get window size
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
+        // Check if player stays within screen height
+        if (playerPositionX > winSize.width - 15) {
+            //player.velx = player.velx * -0.8;
+            //playerPositionX = playerPositionX + player.velx;
+        } else if (playerPositionX < 15) {
+            //player.velx = player.velx * -0.8;
+            //playerPositionX = playerPositionX + player.velx;
+        }
+        
+        // Check if player stays within screen width
+        if (playerPositionY > winSize.height - 15) {
+            //player.vely = player.vely * -0.8;
+            //playerPositionY = playerPositionY + player.vely;
+        } else if (playerPositionY < 15) {
+            //player.vely = player.vely * -0.8;
+            //playerPositionY = playerPositionY + player.vely;
+        }
+        
+        // Calculate friction
+        //player.velx *= player.fric;
+        //player.vely *= player.fric;
+        
+        // Update position
+        //player.position = ccp(playerPositionX += player.velx, playerPositionY += player.vely);
+    }
 }
 
 - (BOOL) ccKeyDown:(NSEvent*)event
@@ -58,7 +137,7 @@
     // keyboard available
     if ([[GameManager sharedManager] getKeyboardEnabledState])
     {
-        NSLog(@"%hu",keyCode);
+        if (kTOGGLE_DEBUG) { NSLog(@"%hu",keyCode); }
         
         if (keyCode == kCAPS_ON_UP || keyCode== kCAPS_OFF_UP) { [playerMovement replaceObjectAtIndex:0 withObject:@"YES"]; } // Up
         if (keyCode == kCAPS_ON_DOWN || keyCode== kCAPS_OFF_DOWN) { [playerMovement replaceObjectAtIndex:1 withObject:@"YES"]; } // Down
@@ -93,6 +172,50 @@
         if (keyCode == kCAPS_ON_LEFT || keyCode== kCAPS_OFF_LEFT) { [playerMovement replaceObjectAtIndex:2 withObject:@"NO"]; } // Left
         if (keyCode == kCAPS_ON_RIGHT || keyCode== kCAPS_OFF_RIGHT) { [playerMovement replaceObjectAtIndex:3 withObject:@"NO"]; } // Right
         if (keyCode == 32) { isSpacePressed = NO; } // space
+    }
+    
+    return YES;
+}
+
+-(BOOL) ccMouseDown:(NSEvent *)event
+{
+    if ([[GameManager sharedManager] getMouseEnabledState]) {
+        
+        CGPoint clickedAt = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
+        NSLog(@"clickedAt : %f",clickedAt.x);
+        NSLog(@"clickedAt : %f",clickedAt.y);
+        
+    }
+    return YES;
+}
+
+- (BOOL) ccMouseMoved:(NSEvent *)event
+{
+    if ([[GameManager sharedManager] getMouseEnabledState]) {
+        
+        [NSCursor hide];
+        
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
+        CGPoint pointedAt = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
+        NSLog(@"pointedAt : %f",pointedAt.x);
+        NSLog(@"pointedAt : %f",pointedAt.y);
+        crossHair.position = pointedAt;
+        
+        if (pointedAt.x < 0) {
+            [NSCursor unhide];
+        }else if (pointedAt.x > winSize.width){
+            [NSCursor unhide];
+        }
+        
+        if (pointedAt.y < 0){
+                [NSCursor unhide];
+        }else if (pointedAt.y > winSize.height){
+                [NSCursor unhide];
+        }
+        
+    }else{
+        [NSCursor unhide];
     }
     
     return YES;

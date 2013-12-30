@@ -23,6 +23,9 @@
 {
 	if( (self=[super init]) ) {
 		[self setKeyboardEnabled:YES];
+        [self setMouseEnabled:YES];
+        
+        [[[CCDirector sharedDirector] eventDispatcher] addMouseDelegate:self priority:0];
 	}
 	return self;
 }

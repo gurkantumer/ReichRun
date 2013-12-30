@@ -15,6 +15,8 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
+    
+        self.contentSize = [[CCDirector sharedDirector] winSize];
 		logoSprite = [CCSprite spriteWithFile:@"logo@2x.png"];
         [logoSprite setScale:.5];
         [logoSprite setPosition:CGPointMake(self.contentSize.width/2, self.contentSize.height/2)];
@@ -22,6 +24,8 @@
         [self addChild:logoSprite];
         
         [self animateLogo];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
 	}
 	return self;
 }
@@ -45,6 +49,12 @@
     CCSequence* sequence = [CCSequence actions:delay,action1, delay, action2, call, nil];
 
     [logoSprite runAction:sequence];
+}
+
+- (void)windowDidResize:(NSNotification *)notification
+{
+    self.contentSize = [[CCDirector sharedDirector] winSize];
+    [logoSprite setPosition:CGPointMake(self.contentSize.width/2, self.contentSize.height/2)];
 }
 
 - (void) animateLogoEnded

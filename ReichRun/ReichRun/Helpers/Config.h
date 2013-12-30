@@ -26,4 +26,12 @@
 #define kCAPS_OFF_LEFT 97
 #define kCAPS_OFF_RIGHT 100
 
+/*
+ maxSpeed = 5.0;        // Maximal speed
+ friction = 0.98;       // Friction
+ acceleration = 0.5;    // Acceleration speed
+ velocityX = 0.0;       // Velocity x
+ velocityY = 0.0;       // Velocity y
+ */
+
 #endif

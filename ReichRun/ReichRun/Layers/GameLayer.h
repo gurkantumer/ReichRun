@@ -7,13 +7,19 @@
 //
 
 #import "BaseLayer.h"
+#import "Player.h"
 
 @interface GameLayer : BaseLayer
 {
     NSMutableArray *playerMovement;
     BOOL isSpacePressed;
+    
+    Player *player;
+    CCSprite *crossHair;
 }
 
 @property (nonatomic, retain) NSMutableArray *playerMovement;
+@property (nonatomic, retain) Player *player;
+@property (nonatomic, retain) CCSprite *crossHair;
 
 @end

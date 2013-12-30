@@ -11,6 +11,8 @@
 @interface GameManager : NSObject
 {
     BOOL isKeyboardEnabled;
+    BOOL isMouseEnabled;
+    BOOL isGamePlayable;
 }
 
 + (GameManager *) sharedManager;
@@ -18,5 +20,12 @@
 // GET-SET
 - (BOOL) getKeyboardEnabledState;
 - (void) setKeyboardEnabledState:(BOOL)state;
+
+- (BOOL) getMouseEnabledState;
+- (void) setMouseEnabledState:(BOOL)state;
+
+- (BOOL) getGameEnabledState;
+- (void) setGameEnabledState:(BOOL)state;
+
 
 @end

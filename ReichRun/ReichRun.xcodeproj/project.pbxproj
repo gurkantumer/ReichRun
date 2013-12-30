@@ -136,6 +136,9 @@
 		7395186C1870E12700D0C970 /* BaseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395186B1870E12700D0C970 /* BaseLayer.m */; };
 		7395186F1870E33E00D0C970 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395186E1870E33E00D0C970 /* GameLayer.m */; };
 		739518721870F2A500D0C970 /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 739518711870F2A500D0C970 /* GameManager.m */; };
+		739518761870F87600D0C970 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 739518751870F87600D0C970 /* Player.m */; };
+		73951879187100DB00D0C970 /* char.png in Resources */ = {isa = PBXBuildFile; fileRef = 73951878187100DB00D0C970 /* char.png */; };
+		7395187B1871054200D0C970 /* crosshair.png in Resources */ = {isa = PBXBuildFile; fileRef = 7395187A1871054200D0C970 /* crosshair.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -420,6 +423,10 @@
 		7395186E1870E33E00D0C970 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameLayer.m; path = Layers/GameLayer.m; sourceTree = "<group>"; };
 		739518701870F2A500D0C970 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameManager.h; path = Helpers/GameManager.h; sourceTree = "<group>"; };
 		739518711870F2A500D0C970 /* GameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameManager.m; path = Helpers/GameManager.m; sourceTree = "<group>"; };
+		739518741870F87600D0C970 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = ReichRun/Objects/Player.h; sourceTree = "<group>"; };
+		739518751870F87600D0C970 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = ReichRun/Objects/Player.m; sourceTree = "<group>"; };
+		73951878187100DB00D0C970 /* char.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char.png; path = Resources/Images/char/char.png; sourceTree = "<group>"; };
+		7395187A1871054200D0C970 /* crosshair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crosshair.png; path = Resources/Images/char/crosshair.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -479,6 +486,7 @@
 				7395184B1870CE4D00D0C970 /* AppDelegate.h */,
 				7395184C1870CE4D00D0C970 /* AppDelegate.m */,
 				7395185B1870D22B00D0C970 /* Layer */,
+				739518731870F80D00D0C970 /* Objects */,
 				7395185D1870D27400D0C970 /* Helpers */,
 				739516C81870CE4C00D0C970 /* Resources */,
 				739516D31870CE4C00D0C970 /* libs */,
@@ -873,6 +881,8 @@
 		7395185B1870D22B00D0C970 /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				7395186A1870E12700D0C970 /* BaseLayer.h */,
+				7395186B1870E12700D0C970 /* BaseLayer.m */,
 				7395185E1870D52200D0C970 /* LogoLayer.h */,
 				7395185F1870D52200D0C970 /* LogoLayer.m */,
 				7395186D1870E33E00D0C970 /* GameLayer.h */,
@@ -885,8 +895,6 @@
 			isa = PBXGroup;
 			children = (
 				7395185C1870D26F00D0C970 /* Config.h */,
-				7395186A1870E12700D0C970 /* BaseLayer.h */,
-				7395186B1870E12700D0C970 /* BaseLayer.m */,
 				739518671870DF6600D0C970 /* SceneManager.h */,
 				739518681870DF6600D0C970 /* SceneManager.m */,
 				739518701870F2A500D0C970 /* GameManager.h */,
@@ -898,6 +906,7 @@
 		739518611870D6F500D0C970 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				73951877187100CA00D0C970 /* Player */,
 				739518621870D6FC00D0C970 /* Misc */,
 			);
 			name = Images;
@@ -910,6 +919,25 @@
 				739518631870D70600D0C970 /* logo.png */,
 			);
 			name = Misc;
+			sourceTree = "<group>";
+		};
+		739518731870F80D00D0C970 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				739518741870F87600D0C970 /* Player.h */,
+				739518751870F87600D0C970 /* Player.m */,
+			);
+			name = Objects;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		73951877187100CA00D0C970 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				7395187A1871054200D0C970 /* crosshair.png */,
+				73951878187100DB00D0C970 /* char.png */,
+			);
+			name = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -985,9 +1013,11 @@
 			files = (
 				739516CC1870CE4C00D0C970 /* InfoPlist.strings in Resources */,
 				739518661870DB7600D0C970 /* logo@2x.png in Resources */,
+				73951879187100DB00D0C970 /* char.png in Resources */,
 				739518641870D70600D0C970 /* logo.png in Resources */,
 				7395182B1870CE4D00D0C970 /* ChangeLog in Resources */,
 				739516CF1870CE4C00D0C970 /* MainMenu.xib in Resources */,
+				7395187B1871054200D0C970 /* crosshair.png in Resources */,
 				739516D11870CE4C00D0C970 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1011,6 +1041,7 @@
 				739517F81870CE4D00D0C970 /* TransformUtils.m in Sources */,
 				739517451870CE4C00D0C970 /* CCNode+Debug.m in Sources */,
 				739517201870CE4C00D0C970 /* ccFPSImages.m in Sources */,
+				739518761870F87600D0C970 /* Player.m in Sources */,
 				739518721870F2A500D0C970 /* GameManager.m in Sources */,
 				739517A61870CE4D00D0C970 /* CCTMXXMLParser.m in Sources */,
 				7395183D1870CE4D00D0C970 /* ray2.c in Sources */,
