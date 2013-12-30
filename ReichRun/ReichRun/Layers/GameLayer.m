@@ -29,9 +29,9 @@
         
         isSpacePressed = NO;
         
-        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        //CGSize winSize = [[CCDirector sharedDirector] winSize];
         
-        self.contentSize = winSize;
+        //self.contentSize = winSize;
         
         [[GameManager sharedManager] setKeyboardEnabledState:YES];
         [[GameManager sharedManager] setMouseEnabledState:YES];
@@ -48,7 +48,7 @@
         crossHair = [[CCSprite alloc] initWithFile:@"crosshair.png"];
         [self addChild:crossHair z:2];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
         
         [self scheduleUpdate];
 	}
@@ -66,9 +66,9 @@
 
 - (void)windowDidResize:(NSNotification *)notification
 {
-    self.contentSize = [[CCDirector sharedDirector] winSize];
-    CCLayerColor* colorLayer = (CCLayerColor *)[self getChildByTag:3000];
-    colorLayer.contentSize = self.contentSize;
+    //self.contentSize = [[CCDirector sharedDirector] winSize];
+    //CCLayerColor* colorLayer = (CCLayerColor *)[self getChildByTag:3000];
+    //colorLayer.contentSize = self.contentSize;
 }
 
 - (void) update:(ccTime)dt
@@ -79,53 +79,63 @@
         CGFloat playerPositionY = player.position.y;
         
         // Up Arrow or W
-        if ([[playerMovement objectAtIndex:0] isEqualToString:@"YES"]) {
-            /*if (player.velocityY < player.maxSpeed) {
+        if ([[playerMovement objectAtIndex:0] isEqualToString:@"YES"])
+        {
+            if (player.velocityY < player.maxSpeed) {
                 player.velocityY += player.acceleration;
-            }*/
+            }
         }
         // Down Arrow or S
-        if ([[playerMovement objectAtIndex:1] isEqualToString:@"YES"]) {
-            /*if (player.velocityY > 0 - player.maxi) {
+        if ([[playerMovement objectAtIndex:1] isEqualToString:@"YES"])
+        {
+            if (player.velocityY > 0 - player.maxSpeed) {
                 player.velocityY -= player.acceleration;
-            }*/
+            }
         }
         // left Arrow or D
-        if ([[playerMovement objectAtIndex:2] isEqualToString:@"YES"]) {
-            //if (player.velx < player.maxi) { player.velx += player.acce; }
+        if ([[playerMovement objectAtIndex:2] isEqualToString:@"YES"])
+        {
+            if (player.velocityX < player.maxSpeed) {
+                player.velocityX += player.acceleration;
+            }
         }
         // Right Arrow or A
-        if ([[playerMovement objectAtIndex:3] isEqualToString:@"YES"]) {
-            //if (player.velx > 0 - player.maxi) { player.velx -= player.acce; }
+        if ([[playerMovement objectAtIndex:3] isEqualToString:@"YES"])
+        {
+            if (player.velocityX > 0 - player.maxSpeed) {
+                player.velocityX -= player.acceleration;
+            }
         }
         
         // Get window size
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         // Check if player stays within screen height
-        if (playerPositionX > winSize.width - 15) {
-            //player.velx = player.velx * -0.8;
-            //playerPositionX = playerPositionX + player.velx;
-        } else if (playerPositionX < 15) {
-            //player.velx = player.velx * -0.8;
-            //playerPositionX = playerPositionX + player.velx;
+        if (playerPositionX > winSize.width - 30) {
+            player.velocityX = player.velocityX * -0.8;
+            playerPositionX = playerPositionX + player.velocityX;
+        } else if (playerPositionX < 30) {
+            player.velocityX = player.velocityX * -0.8;
+            playerPositionX = playerPositionX + player.velocityX;
         }
         
         // Check if player stays within screen width
-        if (playerPositionY > winSize.height - 15) {
-            //player.vely = player.vely * -0.8;
-            //playerPositionY = playerPositionY + player.vely;
-        } else if (playerPositionY < 15) {
-            //player.vely = player.vely * -0.8;
-            //playerPositionY = playerPositionY + player.vely;
+        if (playerPositionY > winSize.height - 30) {
+            player.velocityY = player.velocityY * -0.8;
+            playerPositionY = playerPositionY + player.velocityY;
+        } else if (playerPositionY < 30) {
+            player.velocityY = player.velocityY * -0.8;
+            playerPositionY = playerPositionY + player.velocityY;
         }
         
         // Calculate friction
-        //player.velx *= player.fric;
-        //player.vely *= player.fric;
+        player.velocityX *= player.friction;
+        player.velocityY *= player.friction;
         
         // Update position
-        //player.position = ccp(playerPositionX += player.velx, playerPositionY += player.vely);
+        player.position = ccp(playerPositionX += player.velocityX, playerPositionY += player.velocityY);
+        
+        [player setPositionGraphic:playerMovement];
     }
 }
 

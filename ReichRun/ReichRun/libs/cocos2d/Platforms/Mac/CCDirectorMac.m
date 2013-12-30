@@ -163,7 +163,7 @@
 
         // Set new frame
         [openGLview setFrame:displayRect];
-
+        
         // Attach glView to fullscreen window
         [_fullScreenWindow setContentView:openGLview];
 
@@ -185,7 +185,7 @@
 
         // Set new frame
         [openGLview setFrame:_originalWinRect];
-
+        
         // Show the window
         [_windowGLView makeKeyAndOrderFront:self];
 		[_windowGLView makeMainWindow];
@@ -193,7 +193,9 @@
 	
 	// issue #1189
 	[_windowGLView makeFirstResponder:openGLview];
-
+    
+    [openGLview becomeFirstResponder];
+    
     _isFullScreen = fullscreen;
 
     [openGLview retain]; // Retain +1
@@ -244,6 +246,7 @@
 
 -(void) setViewport
 {
+
 	CGPoint offset = CGPointZero;
 	float widthAspect = _winSizeInPixels.width;
 	float heightAspect = _winSizeInPixels.height;

@@ -52,7 +52,8 @@
 - (id) initWithFrame:(NSRect)frameRect
 {
 	self = [self initWithFrame:frameRect shareContext:nil];
-	return self;
+    [self setWantsBestResolutionOpenGLSurface:YES];
+    return self;
 }
 
 - (id) initWithFrame:(NSRect)frameRect shareContext:(NSOpenGLContext*)context
@@ -86,7 +87,9 @@
 		// event delegate
 		_eventDelegate = nil;
 	}
-
+    
+    //[self setNeedsDisplay:YES];
+    
 	return self;
 }
 
@@ -319,6 +322,21 @@
 {
 	DISPATCH_EVENT(theEvent, _cmd);
 }
+
+/*
+- (void)drawRect:(NSRect)rect   // NSOpenGLView subclass
+{
+    // Get view dimensions in pixels
+    NSRect backingBounds = [self convertRectToBacking:[self bounds]];
+    
+    GLsizei backingPixelWidth  = (GLsizei)(backingBounds.size.width),
+    backingPixelHeight = (GLsizei)(backingBounds.size.height);
+    
+    // Set viewport
+    glViewport(0, 0, backingPixelWidth, backingPixelHeight);
+    
+    // draw…
+}*/
 
 @end
 

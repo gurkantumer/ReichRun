@@ -10,7 +10,7 @@
 #define ReichRun_Config_h
 
 #define kTOGGLE_DEBUG YES
-#define kTOGGLE_FULLSCREEN NO
+#define kTOGGLE_FULLSCREEN YES
 
 // colors
 #define CC_WHITE ccc4(255, 255, 255, 255)
@@ -18,12 +18,12 @@
 
 #define kCAPS_ON_UP 87
 #define kCAPS_ON_DOWN 83
-#define kCAPS_ON_LEFT 65
-#define kCAPS_ON_RIGHT 68
+#define kCAPS_ON_LEFT 68
+#define kCAPS_ON_RIGHT 65
 
 #define kCAPS_OFF_UP 119
 #define kCAPS_OFF_DOWN 115
-#define kCAPS_OFF_LEFT 97
-#define kCAPS_OFF_RIGHT 100
+#define kCAPS_OFF_LEFT 100
+#define kCAPS_OFF_RIGHT 97
 
 #endif

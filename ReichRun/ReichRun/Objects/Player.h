@@ -10,13 +10,18 @@
 
 @interface Player : CCSprite
 {
-    
+    CGFloat velocityX;
+    CGFloat velocityY;
 }
 
+@property (nonatomic) CGFloat velocityX;
+@property (nonatomic) CGFloat velocityY;
+
+- (void) setPositionGraphic:(NSMutableArray *)movementData;
+
+// static values
 - (CGFloat) maxSpeed;
 - (CGFloat) friction;
 - (CGFloat) acceleration;
-- (CGFloat) velocityX;
-- (CGFloat) velocityY;
 
 @end

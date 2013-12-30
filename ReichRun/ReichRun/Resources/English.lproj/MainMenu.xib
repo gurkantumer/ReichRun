@@ -62,7 +62,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="View" id="295">
+                <menuItem title="View" hidden="YES" id="295">
                     <menu key="submenu" title="View" id="296">
                         <items>
                             <menuItem title="Toggle Full Screen" keyEquivalent="f" id="540">
@@ -73,7 +73,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Window" id="19">
+                <menuItem title="Window" hidden="YES" id="19">
                     <menu key="submenu" title="Window" systemMenu="window" id="24">
                         <items>
                             <menuItem title="Minimize" keyEquivalent="m" id="23">
@@ -113,16 +113,15 @@
         </menu>
         <window title="ReichRun" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="464" y="245" width="800" height="600"/>
+            <rect key="contentRect" x="464" y="228" width="1100" height="800"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
-            <value key="minSize" type="size" width="800" height="600"/>
             <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                <rect key="frame" x="0.0" y="0.0" width="1100" height="800"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <openGLView autoresizesSubviews="NO" useAuxiliaryDepthBufferStencil="NO" useDoubleBufferingEnabled="YES" allowOffline="YES" id="533" customClass="CCGLView">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <openGLView useAuxiliaryDepthBufferStencil="NO" useDoubleBufferingEnabled="YES" allowOffline="YES" id="533" customClass="CCGLView">
+                        <rect key="frame" x="0.0" y="0.0" width="1100" height="800"/>
+                        <autoresizingMask key="autoresizingMask"/>
                     </openGLView>
                 </subviews>
             </view>

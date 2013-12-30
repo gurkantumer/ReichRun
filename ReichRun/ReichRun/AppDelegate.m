@@ -14,21 +14,26 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    int width = [[NSScreen mainScreen] frame].size.width-100;
+    int height = [[NSScreen mainScreen] frame].size.height-60;
+    
+    [window_ setFrame:NSMakeRect(0, 0, width, height) display:YES];
+    
     CCDirectorMac *director = (CCDirectorMac*) [CCDirector sharedDirector];
-
-	// enable FPS and SPF
+    
 	[director setDisplayStats:kTOGGLE_DEBUG];
-	[director setView:glView_];
+    [glView_ setFrame:NSMakeRect(0, 0, width, height)];
+    [director setView:glView_];
     
 	[director setResizeMode:kCCDirectorResize_NoScale];
 	
-	// Enable "moving" mouse event. Default no.
 	[window_ setAcceptsMouseMovedEvents:YES];
 	
 	[window_ center];
 	
-    [director runWithScene:[[SceneManager sharedSceneManager] sceneWithID:0]];
-    [director setFullScreen:kTOGGLE_FULLSCREEN];
+    [director runWithScene:[[SceneManager sharedSceneManager] sceneWithID:1]];
+    //[director setFullScreen:kTOGGLE_FULLSCREEN];
+    
 }
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed: (NSApplication *) theApplication
@@ -47,8 +52,8 @@
 
 - (IBAction)toggleFullScreen: (id)sender
 {
-	CCDirectorMac *director = (CCDirectorMac*) [CCDirector sharedDirector];
-	[director setFullScreen: ! [director isFullScreen] ];
+	//CCDirectorMac *director = (CCDirectorMac*) [CCDirector sharedDirector];
+	//[director setFullScreen: ! [director isFullScreen]];
 }
 
 @end

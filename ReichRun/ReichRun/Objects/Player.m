@@ -10,9 +10,14 @@
 
 @implementation Player
 
+@synthesize velocityX;
+@synthesize velocityY;
+
 - (id)init {
     self = [super init];
     if( self != nil ) {
+        velocityX = 0.0;
+        velocityY = 0.0;
     }
     return self;
 }
@@ -23,23 +28,22 @@
 }
 - (CGFloat) friction
 {
-    return 0.98;
+    return 0.8;
 }
 - (CGFloat) acceleration
 {
-    return 0.5;
+    return 0.9;
 }
-- (CGFloat) velocityX
+
+- (void) setPositionGraphic:(NSMutableArray *)movementData
 {
-    return 0.0;
-}
-- (CGFloat) velocityY
-{
-    return 0.0;
+//    NSLog(@"movementData : %@",[movementData description]);
 }
 
 - (void)dealloc {
-    // Deallocations...
+
+    [self removeAllChildrenWithCleanup:YES];
+        // Deallocations...
     [super dealloc];
 }
 @end

@@ -24,8 +24,9 @@
         [self addChild:logoSprite];
         
         [self animateLogo];
+        //[self animateLogoEnded];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
+        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
 	}
 	return self;
 }
@@ -53,7 +54,7 @@
 
 - (void)windowDidResize:(NSNotification *)notification
 {
-    self.contentSize = [[CCDirector sharedDirector] winSize];
+    //self.contentSize = [[CCDirector sharedDirector] winSize];
     [logoSprite setPosition:CGPointMake(self.contentSize.width/2, self.contentSize.height/2)];
 }
 
