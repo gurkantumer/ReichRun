@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "LogoLayer.h"
-#import "Helpers/Config.h"
 
 @implementation ReichRunAppDelegate
 @synthesize window=window_, glView=glView_;
@@ -28,7 +27,7 @@
 	
 	[window_ center];
 	
-	[director runWithScene:[LogoLayer scene]];
+    [director runWithScene:[[SceneManager sharedSceneManager] sceneWithID:0]];
     [director setFullScreen:kTOGGLE_FULLSCREEN];
 }
 

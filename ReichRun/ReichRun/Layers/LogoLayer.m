@@ -8,8 +8,23 @@
 
 #import "LogoLayer.h"
 
-
 @implementation LogoLayer
+
+@synthesize logoSprite;
+
+-(id) init
+{
+	if( (self=[super init]) ) {
+		logoSprite = [CCSprite spriteWithFile:@"logo@2x.png"];
+        [logoSprite setScale:.5];
+        [logoSprite setPosition:CGPointMake(self.contentSize.width/2, self.contentSize.height/2)];
+        [logoSprite setOpacity:0.0];
+        [self addChild:logoSprite];
+        
+        [self animateLogo];
+	}
+	return self;
+}
 
 +(CCScene *) scene
 {
@@ -20,12 +35,22 @@
 	return scene;
 }
 
--(id) init
+- (void) animateLogo
 {
-	if( (self=[super init]) ) {
-		
-	}
-	return self;
+
+    id delay = [CCDelayTime actionWithDuration:2];
+    id action1 = [CCFadeIn actionWithDuration:1.0]; // fading in
+    id action2 = [CCFadeOut actionWithDuration:1.0]; //fading out
+    id call = [CCCallFunc actionWithTarget:self selector:@selector(animateLogoEnded)];
+    CCSequence* sequence = [CCSequence actions:delay,action1, delay, action2, call, nil];
+
+    [logoSprite runAction:sequence];
+}
+
+- (void) animateLogoEnded
+{
+    NSLog(@"ended");
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:1] withColor:ccBLACK]];
 }
 
 - (void) dealloc
