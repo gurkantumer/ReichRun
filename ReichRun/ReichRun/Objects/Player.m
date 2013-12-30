@@ -12,6 +12,7 @@
 
 @synthesize velocityX;
 @synthesize velocityY;
+@synthesize health;
 
 - (id)init {
     self = [super init];

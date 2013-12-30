@@ -12,6 +12,7 @@
 @implementation GameLayer
 
 @synthesize playerMovement;
+@synthesize enemyArray;
 @synthesize player;
 @synthesize crossHair;
 
@@ -21,11 +22,29 @@
     {
         if(!kTOGGLE_DEBUG)[NSCursor hide];
         
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
         playerMovement = [[NSMutableArray alloc] init];
         [playerMovement addObject:@"NO"];
         [playerMovement addObject:@"NO"];
         [playerMovement addObject:@"NO"];
         [playerMovement addObject:@"NO"];
+        
+        enemyArray = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i<10; i++)
+        {
+            Enemy *enemy = [[Enemy alloc] initWithFile:@"char.png"];
+            float screenWidth = winSize.width;
+            float screenHeight = winSize.height;
+            
+            [enemy setPosition:CGPointMake(arc4random() % (int) screenWidth, arc4random() % (int)screenHeight)];
+            
+            NSLog(@"enemy : %f,%f", enemy.position.x,enemy.position.y);
+            
+            [enemyArray addObject:enemy];
+            [self addChild:enemy z:2];
+        }
         
         isSpacePressed = NO;
         
@@ -136,6 +155,12 @@
         player.position = ccp(playerPositionX += player.velocityX, playerPositionY += player.velocityY);
         
         [player setPositionGraphic:playerMovement];
+    }
+    
+    for (int i=0; i<enemyArray.count; i++) {
+        Enemy *enemy = (Enemy *) [enemyArray objectAtIndex:i];
+        [enemy updateTargetPosition:player.position];
+        [enemy move];
     }
 }
 

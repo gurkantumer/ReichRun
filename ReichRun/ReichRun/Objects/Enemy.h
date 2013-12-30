@@ -1,5 +1,5 @@
 //
-//  Player.h
+//  Enemy.h
 //  ReichRun
 //
 //  Created by Gurkan Tumer on 30/12/13.
@@ -8,12 +8,14 @@
 
 #import "CCSprite.h"
 
-@interface Player : CCSprite
+@interface Enemy : CCSprite
 {
     CGFloat velocityX;
     CGFloat velocityY;
     
     CGFloat health;
+    
+    CGPoint targetPosition;
 }
 
 @property (nonatomic) CGFloat velocityX;
@@ -21,6 +23,8 @@
 @property (nonatomic) CGFloat health;
 
 - (void) setPositionGraphic:(NSMutableArray *)movementData;
+- (void) updateTargetPosition:(CGPoint)tPosition;
+- (void) move;
 
 // static values
 - (CGFloat) maxSpeed;

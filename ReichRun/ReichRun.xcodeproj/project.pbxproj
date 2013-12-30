@@ -139,6 +139,7 @@
 		739518761870F87600D0C970 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 739518751870F87600D0C970 /* Player.m */; };
 		73951879187100DB00D0C970 /* char.png in Resources */ = {isa = PBXBuildFile; fileRef = 73951878187100DB00D0C970 /* char.png */; };
 		7395187B1871054200D0C970 /* crosshair.png in Resources */ = {isa = PBXBuildFile; fileRef = 7395187A1871054200D0C970 /* crosshair.png */; };
+		7395187E1871315600D0C970 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395187D1871315600D0C970 /* Enemy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -427,6 +428,8 @@
 		739518751870F87600D0C970 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Player.m; path = ReichRun/Objects/Player.m; sourceTree = "<group>"; };
 		73951878187100DB00D0C970 /* char.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = char.png; path = Resources/Images/char/char.png; sourceTree = "<group>"; };
 		7395187A1871054200D0C970 /* crosshair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crosshair.png; path = Resources/Images/char/crosshair.png; sourceTree = "<group>"; };
+		7395187C1871315600D0C970 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemy.h; path = ReichRun/Objects/Enemy.h; sourceTree = "<group>"; };
+		7395187D1871315600D0C970 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Enemy.m; path = ReichRun/Objects/Enemy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -926,6 +929,8 @@
 			children = (
 				739518741870F87600D0C970 /* Player.h */,
 				739518751870F87600D0C970 /* Player.m */,
+				7395187C1871315600D0C970 /* Enemy.h */,
+				7395187D1871315600D0C970 /* Enemy.m */,
 			);
 			name = Objects;
 			path = ..;
@@ -1083,6 +1088,7 @@
 				739516E31870CE4C00D0C970 /* CCActionGrid.m in Sources */,
 				7395172C1870CE4C00D0C970 /* CCGrid.m in Sources */,
 				7395183B1870CE4D00D0C970 /* quaternion.c in Sources */,
+				7395187E1871315600D0C970 /* Enemy.m in Sources */,
 				739517881870CE4D00D0C970 /* CCSpriteFrame.m in Sources */,
 				7395186C1870E12700D0C970 /* BaseLayer.m in Sources */,
 				739516F51870CE4C00D0C970 /* CCActionProgressTimer.m in Sources */,
