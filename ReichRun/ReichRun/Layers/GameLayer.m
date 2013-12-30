@@ -35,6 +35,7 @@
         for (int i = 0; i<10; i++)
         {
             Enemy *enemy = [[Enemy alloc] initWithFile:@"char.png"];
+            [enemy setUpSchedule];
             float screenWidth = winSize.width;
             float screenHeight = winSize.height;
             
@@ -159,8 +160,14 @@
     
     for (int i=0; i<enemyArray.count; i++) {
         Enemy *enemy = (Enemy *) [enemyArray objectAtIndex:i];
-        [enemy updateTargetPosition:player.position];
-        [enemy move];
+        CGFloat distanceApart = ccpDistance(enemy.position, player.position);
+        NSLog(@"%f",distanceApart);
+        if (distanceApart<200) {
+            [enemy updateTargetPosition:player.position];
+            [enemy moveToPlayer];
+        }
+        //[enemy updateTargetPosition:player.position];
+        //[enemy move];
     }
 }
 

@@ -16,6 +16,8 @@
     CGFloat health;
     
     CGPoint targetPosition;
+    
+    BOOL isIDLE;
 }
 
 @property (nonatomic) CGFloat velocityX;
@@ -24,7 +26,9 @@
 
 - (void) setPositionGraphic:(NSMutableArray *)movementData;
 - (void) updateTargetPosition:(CGPoint)tPosition;
-- (void) move;
+- (void) setUpSchedule;
+- (void) moveToPlayer;
+- (void) moveIdle;
 
 // static values
 - (CGFloat) maxSpeed;

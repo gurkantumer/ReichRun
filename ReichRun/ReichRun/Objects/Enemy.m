@@ -18,21 +18,29 @@
     if( self != nil ) {
         velocityX = 0.0;
         velocityY = 0.0;
+        isIDLE = YES;
     }
     return self;
 }
 
-- (void) move
+- (void) setUpSchedule
 {
-    NSLog(@"HELLO");
+    isIDLE = YES;
+    [self schedule:@selector(moveIdle:)interval:1.0f/60.0f];
+}
+
+- (void) moveToPlayer
+{
     float dx = self.position.x - targetPosition.x;
     float dy = self.position.y - targetPosition.y;
     self.position = ccp(self.position.x - dx / [self maxSpeed], self.position.y - dy / [self maxSpeed]);
-    
-    double radian = atan2(dy, dx);
-    x = x + Math.cos(radian) * [self maxSpeed];
-    y = y + Math.sin(radian) * [self maxSpeed];
-    rotation = radian * 180 / Math.PI;
+}
+
+- (void) moveIdle
+{
+    if (isIDLE) {
+        NSLog(@"hello idle move");
+    }
 }
 
 - (CGFloat) maxSpeed
