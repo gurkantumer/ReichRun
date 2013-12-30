@@ -14,12 +14,12 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	CCDirectorMac *director = (CCDirectorMac*) [CCDirector sharedDirector];
+    CCDirectorMac *director = (CCDirectorMac*) [CCDirector sharedDirector];
 
 	// enable FPS and SPF
 	[director setDisplayStats:kTOGGLE_DEBUG];
 	[director setView:glView_];
-
+    
 	[director setResizeMode:kCCDirectorResize_NoScale];
 	
 	// Enable "moving" mouse event. Default no.

@@ -19,7 +19,7 @@
 {
 	if( (self=[super init]) )
     {
-        [NSCursor hide];
+        if(!kTOGGLE_DEBUG)[NSCursor hide];
         
         playerMovement = [[NSMutableArray alloc] init];
         [playerMovement addObject:@"NO"];
@@ -45,7 +45,7 @@
         [player setPosition:CGPointMake(200, 200)];
         [self addChild:player z:1];
         
-        crossHair = [[CCSprite alloc] initWithFile:@"crosshair.png" rect:CGRectMake(winSize.width/2, winSize.height/2, 50, 50)];
+        crossHair = [[CCSprite alloc] initWithFile:@"crosshair.png"];
         [self addChild:crossHair z:2];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
@@ -180,11 +180,9 @@
 -(BOOL) ccMouseDown:(NSEvent *)event
 {
     if ([[GameManager sharedManager] getMouseEnabledState]) {
-        
-        CGPoint clickedAt = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
-        NSLog(@"clickedAt : %f",clickedAt.x);
-        NSLog(@"clickedAt : %f",clickedAt.y);
-        
+        //CGPoint clickedAt = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
+        //NSLog(@"clickedAt : %f",clickedAt.x);
+        //NSLog(@"clickedAt : %f",clickedAt.y);
     }
     return YES;
 }
@@ -193,26 +191,13 @@
 {
     if ([[GameManager sharedManager] getMouseEnabledState]) {
         
-        [NSCursor hide];
-        
-        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        if(!kTOGGLE_DEBUG) [NSCursor hide];
+        //CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         CGPoint pointedAt = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
-        NSLog(@"pointedAt : %f",pointedAt.x);
-        NSLog(@"pointedAt : %f",pointedAt.y);
+        //NSLog(@"pointedAt : %f",pointedAt.x);
+        //NSLog(@"pointedAt : %f",pointedAt.y);
         crossHair.position = pointedAt;
-        
-        if (pointedAt.x < 0) {
-            [NSCursor unhide];
-        }else if (pointedAt.x > winSize.width){
-            [NSCursor unhide];
-        }
-        
-        if (pointedAt.y < 0){
-                [NSCursor unhide];
-        }else if (pointedAt.y > winSize.height){
-                [NSCursor unhide];
-        }
         
     }else{
         [NSCursor unhide];

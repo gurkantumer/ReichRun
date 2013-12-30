@@ -17,8 +17,8 @@
 	if( (self=[super init]) ) {
     
         self.contentSize = [[CCDirector sharedDirector] winSize];
-		logoSprite = [CCSprite spriteWithFile:@"logo@2x.png"];
-        [logoSprite setScale:.5];
+		logoSprite = [CCSprite spriteWithFile:@"logo.png"];
+        [logoSprite.texture setAntiAliasTexParameters];
         [logoSprite setPosition:CGPointMake(self.contentSize.width/2, self.contentSize.height/2)];
         [logoSprite setOpacity:0.0];
         [self addChild:logoSprite];
