@@ -7,6 +7,7 @@
 //
 
 #import "LogoLayer.h"
+#import "GameLayer.h"
 
 @implementation LogoLayer
 
@@ -61,7 +62,7 @@
 - (void) animateLogoEnded
 {
     NSLog(@"ended");
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:1] withColor:ccBLACK]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:0] withColor:ccBLACK]];
 }
 
 - (void)dealloc

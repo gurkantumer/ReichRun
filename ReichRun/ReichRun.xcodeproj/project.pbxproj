@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73080A59187612A400DF2AE5 /* GameEndLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 73080A58187612A400DF2AE5 /* GameEndLayer.m */; };
 		736983501871A67A004211A9 /* Ground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7369834F1871A67A004211A9 /* Ground.m */; };
 		736983521871A86B004211A9 /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 736983511871A86B004211A9 /* ground.png */; };
 		736983551871AAD6004211A9 /* BaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 736983541871AAD6004211A9 /* BaseObject.m */; };
@@ -153,6 +154,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		73080A57187612A400DF2AE5 /* GameEndLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameEndLayer.h; path = Layers/GameEndLayer.h; sourceTree = "<group>"; };
+		73080A58187612A400DF2AE5 /* GameEndLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameEndLayer.m; path = Layers/GameEndLayer.m; sourceTree = "<group>"; };
 		7369834E1871A67A004211A9 /* Ground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ground.h; path = ReichRun/Objects/Ground.h; sourceTree = "<group>"; };
 		7369834F1871A67A004211A9 /* Ground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ground.m; path = ReichRun/Objects/Ground.m; sourceTree = "<group>"; };
 		736983511871A86B004211A9 /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ground.png; path = Resources/Images/misc/ground.png; sourceTree = "<group>"; };
@@ -956,6 +959,8 @@
 				7395185F1870D52200D0C970 /* LogoLayer.m */,
 				7395186D1870E33E00D0C970 /* GameLayer.h */,
 				7395186E1870E33E00D0C970 /* GameLayer.m */,
+				73080A57187612A400DF2AE5 /* GameEndLayer.h */,
+				73080A58187612A400DF2AE5 /* GameEndLayer.m */,
 			);
 			name = Layer;
 			sourceTree = "<group>";
@@ -1143,6 +1148,7 @@
 				739517A91870CE4D00D0C970 /* CCTransition.m in Sources */,
 				739517511870CE4C00D0C970 /* CCParticleExamples.m in Sources */,
 				7395174E1870CE4C00D0C970 /* CCParticleBatchNode.m in Sources */,
+				73080A59187612A400DF2AE5 /* GameEndLayer.m in Sources */,
 				739517911870CE4D00D0C970 /* CCTextureAtlas.m in Sources */,
 				7395183F1870CE4D00D0C970 /* utility.c in Sources */,
 				739517EB1870CE4D00D0C970 /* CCVertex.m in Sources */,

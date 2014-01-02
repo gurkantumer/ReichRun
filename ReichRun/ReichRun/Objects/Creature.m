@@ -100,23 +100,38 @@
 
 - (void) updateHealth:(float)hValue
 {
-    NSLog(@"HEALTH : %f",health);
     health += hValue;
+    
     if (health >100)
     {
         health = 100;
     }
     
-    if (health<0)
+    if (health<=0)
     {
         health = 0;
         
         if ([self isKindOfClass:[Player class]]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:kHEALTH_ZERO object:nil];
         }
+        
+        if ([self isKindOfClass:[Enemy class]])
+        {
+            [[LevelManager sharedManager].enemyArray removeObject:self];
+            [self killCreature];
+        }
     }
     
     NSLog(@"HEALTH : %f",health);
+}
+
+- (void) killCreature
+{
+    // death animation
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_ADD object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_DROP object:nil];
+    [self removeFromParentAndCleanup:YES];
+    
 }
 
 - (void) updateTargetPosition:(CGPoint)tPosition

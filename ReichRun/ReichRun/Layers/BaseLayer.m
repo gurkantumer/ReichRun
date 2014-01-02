@@ -72,17 +72,29 @@
 
 - (BOOL) ccKeyDown : (NSEvent*) event
 {
-//    NSString *str_1 = [event characters];
-//    unichar ch = [str_1 characterAtIndex:0];
-//    NSLog(@"%hu",ch);
     return YES;
 }
 
 - (BOOL) ccKeyUp : (NSEvent*) event
 {
-    //NSString *str_1 = [KeyDownEvent characters];
-    //unichar ch = [str_1 characterAtIndex:0];
     return YES;
+}
+
+- (BOOL) ccMouseMoved:(NSEvent *)event
+{
+    return YES;
+}
+
+- (BOOL) ccMouseDown:(NSEvent *)event
+{
+    return YES;
+}
+
+- (void) dealloc
+{
+    [[[CCDirector sharedDirector] eventDispatcher] removeAllMouseDelegates];
+    [self removeAllChildrenWithCleanup:YES];
+    [super dealloc];
 }
 
 @end

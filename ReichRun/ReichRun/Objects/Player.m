@@ -68,19 +68,19 @@
     
     // Check if player stays within screen height
     if (playerPositionX > walkSize.width - 100) {
-        self.velocityX = self.velocityX * -0.8;
+        self.velocityX = self.velocityX * -1;//0.8;
         playerPositionX = playerPositionX + self.velocityX;
      } else if (playerPositionX < 100) {
-         self.velocityX = self.velocityX * -0.8;
+         self.velocityX = self.velocityX * -1;//0.8;
          playerPositionX = playerPositionX + self.velocityX;
      }
      
      // Check if player stays within screen width
      if (playerPositionY > walkSize.height - 100) {
-         self.velocityY = self.velocityY * -0.8;
+         self.velocityY = self.velocityY * -1;//0.8;
          playerPositionY = playerPositionY + self.velocityY;
      } else if (playerPositionY < 100) {
-         self.velocityY = self.velocityY * -0.8;
+         self.velocityY = self.velocityY * -1;//0.8;
          playerPositionY = playerPositionY + self.velocityY;
      }
     

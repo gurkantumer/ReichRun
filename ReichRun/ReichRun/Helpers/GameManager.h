@@ -15,7 +15,6 @@
     BOOL isGamePlayable;
 }
 
-
 + (GameManager *) sharedManager;
 
 // GET-SET

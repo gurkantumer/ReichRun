@@ -76,12 +76,13 @@ static char * glExtensions;
 #elif defined(__CC_PLATFORM_MAC)
 - (NSString*)getMacVersion
 {
-    SInt32 versionMajor, versionMinor, versionBugFix;
-	Gestalt(gestaltSystemVersionMajor, &versionMajor);
-	Gestalt(gestaltSystemVersionMinor, &versionMinor);
-	Gestalt(gestaltSystemVersionBugFix, &versionBugFix);
+    //SInt32 versionMajor, versionMinor, versionBugFix;
+	//uname(gestaltSystemVersionMajor, &versionMajor);
+	//uname(gestaltSystemVersionMinor, &versionMinor);
+	//uname(gestaltSystemVersionBugFix, &versionBugFix);
 
-	return [NSString stringWithFormat:@"%d.%d.%d", versionMajor, versionMinor, versionBugFix];
+	//return [NSString stringWithFormat:@"%d.%d.%d", versionMajor, versionMinor, versionBugFix];
+    return @"1.1.1";
 }
 #endif // __CC_PLATFORM_MAC
 

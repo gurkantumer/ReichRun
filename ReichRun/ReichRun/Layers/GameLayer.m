@@ -120,6 +120,8 @@
                     [[[LevelManager sharedManager] bulletArray] removeObject:bullet];
                     [ground removeChild:bullet cleanup:YES];
                     NSLog(@"hit enemy");
+                    enemy.isIDLE = NO;
+                    [enemy updateHealth:[LevelManager sharedManager].healthValue * -1];
                 }
             }
         }
@@ -254,6 +256,10 @@
     if ([notification.name isEqualToString:kHEALTH_ZERO]) {
         NSLog(@"GAME ENDED");
         
+        //[[GameManager sharedManager] setKeyboardEnabledState:NO];
+        //[[GameManager sharedManager] setMouseEnabledState:NO];
+        //[[GameManager sharedManager] setGameEnabledState:NO];
+        
         CCLayerColor *color = [[CCLayerColor alloc] initWithColor:ccc4(0, 0, 0, 150) width:2000 height:2000];
         [self addChild:color];
         
@@ -262,21 +268,28 @@
         id delay = [CCDelayTime actionWithDuration:1];
         CCSequence* sequence = [CCSequence actions:action1,delay,call, nil];
         [color runAction:sequence];
+        
+        // CLEAR ALL
+        
     }
 }
 
 - (void) gameEnded
 {
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:1] withColor:ccBLACK]];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_ADD object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_DROP object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_ZERO object:nil];
+    
+    [self removeAllChildrenWithCleanup:YES];
+    player = nil;
+    [playerMovement removeAllObjects];
+    playerMovement = nil;
+    
 }
 
 - (void) dealloc
 {
-    [self removeAllChildrenWithCleanup:YES];
-    
-    [playerMovement removeAllObjects];
-    playerMovement = nil;
-    
     [super dealloc];
 }
 
