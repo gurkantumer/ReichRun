@@ -8,13 +8,26 @@
 
 #import "GameLayer.h"
 #import "GameManager.h"
+#import "LevelManager.h"
+
+#import "CCShake.h"
 
 @implementation GameLayer
 
 @synthesize playerMovement;
-@synthesize enemyArray;
 @synthesize player;
 @synthesize crossHair;
+@synthesize ground;
+
++(CCScene *) scene
+{
+	CCScene *scene = [CCScene node];
+    GameLayer *layer = [GameLayer node];
+	   
+	[scene addChild: layer];
+    
+    return scene;
+}
 
 -(id) init
 {
@@ -22,152 +35,127 @@
     {
         if(!kTOGGLE_DEBUG)[NSCursor hide];
         
-        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        //CGSize winSize = [[CCDirector sharedDirector] winSize];
         
         playerMovement = [[NSMutableArray alloc] init];
         [playerMovement addObject:@"NO"];
         [playerMovement addObject:@"NO"];
         [playerMovement addObject:@"NO"];
         [playerMovement addObject:@"NO"];
-        
-        enemyArray = [[NSMutableArray alloc] init];
-        
-        for (int i = 0; i<10; i++)
-        {
-            Enemy *enemy = [[Enemy alloc] initWithFile:@"char.png"];
-            [enemy setUpSchedule];
-            float screenWidth = winSize.width;
-            float screenHeight = winSize.height;
-            
-            [enemy setPosition:CGPointMake(arc4random() % (int) screenWidth, arc4random() % (int)screenHeight)];
-            
-            NSLog(@"enemy : %f,%f", enemy.position.x,enemy.position.y);
-            
-            [enemyArray addObject:enemy];
-            [self addChild:enemy z:2];
-        }
-        
+                
         isSpacePressed = NO;
-        
-        //CGSize winSize = [[CCDirector sharedDirector] winSize];
-        
-        //self.contentSize = winSize;
         
         [[GameManager sharedManager] setKeyboardEnabledState:YES];
         [[GameManager sharedManager] setMouseEnabledState:YES];
         [[GameManager sharedManager] setGameEnabledState:YES];
+
+        ground = [[Ground alloc] init];
+        [self addChild:ground];
         
-        CCLayerColor* colorLayer = [CCLayerColor layerWithColor:CC_GRAY];
-        colorLayer.tag = 3000;
-        [self addChild:colorLayer z:0];
+        player = [[Player alloc] initWithGround:ground];
+        [ground addChild:player z:1];
         
-        player = [[Player alloc] initWithFile:@"char.png"];
-        [player setPosition:CGPointMake(200, 200)];
-        [self addChild:player z:1];
+        for (int i = 0; i<[LevelManager sharedManager].enemyCount; i++)
+        {
+            Enemy *enemy = [[Enemy alloc] initWithGround:ground];
+            [ground addChild:enemy z:2];
+        }
+        
+        for (int ii = 0; ii<[LevelManager sharedManager].healthCount; ii++)
+        {
+            HealthPack *health = [[HealthPack alloc] init];            
+            [ground addChild:health z:2];
+        }
         
         crossHair = [[CCSprite alloc] initWithFile:@"crosshair.png"];
-        [self addChild:crossHair z:2];
-        
-        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
-        
+        [ground addChild:crossHair z:2];
+    
         [self scheduleUpdate];
 	}
 	return self;
 }
 
-+(CCScene *) scene
-{
-	CCScene *scene = [CCScene node];
-    GameLayer *layer = [GameLayer node];
-	
-	[scene addChild: layer];
-	return scene;
-}
-
-- (void)windowDidResize:(NSNotification *)notification
-{
-    //self.contentSize = [[CCDirector sharedDirector] winSize];
-    //CCLayerColor* colorLayer = (CCLayerColor *)[self getChildByTag:3000];
-    //colorLayer.contentSize = self.contentSize;
-}
-
 - (void) update:(ccTime)dt
 {
+    [self updateGlobalPositions];
+        
+    crossHair.position = crossHairPosition;
+    
     if([[GameManager sharedManager] getGameEnabledState]){
-        // Get player current position
-        CGFloat playerPositionX = player.position.x;
-        CGFloat playerPositionY = player.position.y;
         
-        // Up Arrow or W
-        if ([[playerMovement objectAtIndex:0] isEqualToString:@"YES"])
-        {
-            if (player.velocityY < player.maxSpeed) {
-                player.velocityY += player.acceleration;
-            }
-        }
-        // Down Arrow or S
-        if ([[playerMovement objectAtIndex:1] isEqualToString:@"YES"])
-        {
-            if (player.velocityY > 0 - player.maxSpeed) {
-                player.velocityY -= player.acceleration;
-            }
-        }
-        // left Arrow or D
-        if ([[playerMovement objectAtIndex:2] isEqualToString:@"YES"])
-        {
-            if (player.velocityX < player.maxSpeed) {
-                player.velocityX += player.acceleration;
-            }
-        }
-        // Right Arrow or A
-        if ([[playerMovement objectAtIndex:3] isEqualToString:@"YES"])
-        {
-            if (player.velocityX > 0 - player.maxSpeed) {
-                player.velocityX -= player.acceleration;
+        //[ground updatePosition:playerMovement];
+        [player updatePosition:playerMovement];
+        
+        for (int i=0; i<[[LevelManager sharedManager] healthArray].count; i++) {
+            HealthPack *health = (HealthPack *) [[[LevelManager sharedManager] healthArray] objectAtIndex:i];
+            CGFloat distanceApart = ccpDistance(health.position, player.position);
+            
+            if (distanceApart<100)
+            {
+                [health updateTargetPosition:player.position];
+                [health moveToPlayer];
             }
         }
         
-        // Get window size
+        for (int i=0; i<[[LevelManager sharedManager] enemyArray].count; i++) {
+            Enemy *enemy = (Enemy *) [[[LevelManager sharedManager] enemyArray] objectAtIndex:i];
+            CGFloat distanceApart = ccpDistance(enemy.position, player.position);
+            
+            if (distanceApart<200)
+            {
+                [enemy updateTargetPosition:player.position];
+                [enemy moveToPlayer];
+            }else{
+                if (!enemy.isIDLE) {
+                    [enemy updateTargetPosition:player.position];
+                    [enemy moveToPlayer];
+                }
+            }
+            
+            for (int j=0; j<[[LevelManager sharedManager] bulletArray].count; j++) {
+                CCSprite *bullet = (CCSprite*)[[[LevelManager sharedManager] bulletArray] objectAtIndex:j];
+                CGFloat bulletDistanceApart = ccpDistance(enemy.position, bullet.position);
+                if (bulletDistanceApart<15)
+                {
+                    [[[LevelManager sharedManager] bulletArray] removeObject:bullet];
+                    [ground removeChild:bullet cleanup:YES];
+                    NSLog(@"hit enemy");
+                }
+            }
+        }
+        
+        for (int i=0; i<[[LevelManager sharedManager] enemyBulletArray].count; i++) {
+            CCSprite *bullet = (CCSprite*)[[[LevelManager sharedManager] enemyBulletArray] objectAtIndex:i];
+            CGFloat distanceApart = ccpDistance(bullet.position, player.position);
+            if (distanceApart<15)
+            {
+                NSLog(@"hit player");
+                
+                [[[LevelManager sharedManager] enemyBulletArray] removeObject:bullet];
+                [ground removeChild:bullet cleanup:YES];
+                
+                NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+                [userInfo setValue:[NSString stringWithFormat:@"%f",player.position.x] forKey:@"locationX"];
+                [userInfo setValue:[NSString stringWithFormat:@"%f",player.position.y] forKey:@"locationY"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kHEALTH_DROP object:nil userInfo:userInfo];
+            }
+        }
+        
+        float centerX, centerY, centerZ;
+        float eyeX, eyeY, eyeZ;
+        [self.camera centerX:&centerX centerY:&centerY centerZ:&centerZ];
+        [self.camera eyeX:&eyeX eyeY:&eyeY eyeZ:&eyeZ];
+        
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
-        // Check if player stays within screen height
-        if (playerPositionX > winSize.width - 30) {
-            player.velocityX = player.velocityX * -0.8;
-            playerPositionX = playerPositionX + player.velocityX;
-        } else if (playerPositionX < 30) {
-            player.velocityX = player.velocityX * -0.8;
-            playerPositionX = playerPositionX + player.velocityX;
-        }
+        centerX = eyeX = (player.position.x) - (winSize.width*.5f);
+        centerY = eyeY = (player.position.y) - (winSize.height*.5f);
         
-        // Check if player stays within screen width
-        if (playerPositionY > winSize.height - 30) {
-            player.velocityY = player.velocityY * -0.8;
-            playerPositionY = playerPositionY + player.velocityY;
-        } else if (playerPositionY < 30) {
-            player.velocityY = player.velocityY * -0.8;
-            playerPositionY = playerPositionY + player.velocityY;
-        }
+        centerX = eyeX = clampf(centerX, 0.0f, ground.contentSize.width - winSize.width);
+        centerY = eyeY = clampf(centerY, 0.0f, ground.contentSize.height - winSize.height);
         
-        // Calculate friction
-        player.velocityX *= player.friction;
-        player.velocityY *= player.friction;
-        
-        // Update position
-        player.position = ccp(playerPositionX += player.velocityX, playerPositionY += player.velocityY);
-        
-        [player setPositionGraphic:playerMovement];
-    }
-    
-    for (int i=0; i<enemyArray.count; i++) {
-        Enemy *enemy = (Enemy *) [enemyArray objectAtIndex:i];
-        CGFloat distanceApart = ccpDistance(enemy.position, player.position);
-        NSLog(@"%f",distanceApart);
-        if (distanceApart<200) {
-            [enemy updateTargetPosition:player.position];
-            [enemy moveToPlayer];
-        }
-        //[enemy updateTargetPosition:player.position];
-        //[enemy move];
+        [self.camera setCenterX:centerX centerY:centerY centerZ:centerZ];
+        [self.camera setEyeX:eyeX eyeY:eyeY eyeZ:eyeZ];
     }
 }
 
@@ -179,7 +167,7 @@
     // keyboard available
     if ([[GameManager sharedManager] getKeyboardEnabledState])
     {
-        if (kTOGGLE_DEBUG) { NSLog(@"%hu",keyCode); }
+        //if (kTOGGLE_DEBUG) { NSLog(@"%hu",keyCode); }
         
         if (keyCode == kCAPS_ON_UP || keyCode== kCAPS_OFF_UP) { [playerMovement replaceObjectAtIndex:0 withObject:@"YES"]; } // Up
         if (keyCode == kCAPS_ON_DOWN || keyCode== kCAPS_OFF_DOWN) { [playerMovement replaceObjectAtIndex:1 withObject:@"YES"]; } // Down
@@ -222,9 +210,11 @@
 -(BOOL) ccMouseDown:(NSEvent *)event
 {
     if ([[GameManager sharedManager] getMouseEnabledState]) {
-        //CGPoint clickedAt = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
-        //NSLog(@"clickedAt : %f",clickedAt.x);
-        //NSLog(@"clickedAt : %f",clickedAt.y);
+        mousePosition = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
+        [self updateGlobalPositions];
+        [player fireBullet:crossHairPosition atLayer:self];
+        
+        [self runAction:[CCShake actionWithDuration:.05f amplitude:ccp(6,6) dampening:true shakes:4]];
     }
     return YES;
 }
@@ -234,18 +224,50 @@
     if ([[GameManager sharedManager] getMouseEnabledState]) {
         
         if(!kTOGGLE_DEBUG) [NSCursor hide];
-        //CGSize winSize = [[CCDirector sharedDirector] winSize];
         
-        CGPoint pointedAt = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
-        //NSLog(@"pointedAt : %f",pointedAt.x);
-        //NSLog(@"pointedAt : %f",pointedAt.y);
-        crossHair.position = pointedAt;
+        mousePosition = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
+        [self updateGlobalPositions];
         
     }else{
         [NSCursor unhide];
     }
     
     return YES;
+}
+
+- (void) notificationHandler:(NSNotification*)notification
+{
+    NSLog(@"NotificationLayer : :%@, %@", notification.name,[notification.userInfo description]);
+    if ([notification.name isEqualToString:kHEALTH_ADD]) {
+        float xVal = [[notification.userInfo valueForKey:@"locationX"] floatValue];
+        float yVal = [[notification.userInfo valueForKey:@"locationY"] floatValue]+50;
+        CGPoint point = ccp(xVal, yVal);
+        [self addLabelWithText:[NSString stringWithFormat:@"+%i",(int)[[LevelManager sharedManager] healthValue]] atPoint:point];
+    }
+    if ([notification.name isEqualToString:kHEALTH_DROP]) {
+        float xVal = [[notification.userInfo valueForKey:@"locationX"] floatValue];
+        float yVal = [[notification.userInfo valueForKey:@"locationY"] floatValue]+50;
+        CGPoint point = ccp(xVal, yVal);
+        [self addLabelWithText:[NSString stringWithFormat:@"-%i",(int)[[LevelManager sharedManager] healthValue]] atPoint:point];
+    }
+    
+    if ([notification.name isEqualToString:kHEALTH_ZERO]) {
+        NSLog(@"GAME ENDED");
+        
+        CCLayerColor *color = [[CCLayerColor alloc] initWithColor:ccc4(0, 0, 0, 150) width:2000 height:2000];
+        [self addChild:color];
+        
+        id action1 = [CCFadeIn actionWithDuration:.5];
+        id call = [CCCallFunc actionWithTarget:self selector:@selector(gameEnded)];
+        id delay = [CCDelayTime actionWithDuration:1];
+        CCSequence* sequence = [CCSequence actions:action1,delay,call, nil];
+        [color runAction:sequence];
+    }
+}
+
+- (void) gameEnded
+{
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:1] withColor:ccBLACK]];
 }
 
 - (void) dealloc

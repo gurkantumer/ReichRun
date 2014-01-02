@@ -7,63 +7,98 @@
 //
 
 #import "Enemy.h"
+#import "LevelManager.h"
 
 @implementation Enemy
-@synthesize velocityX;
-@synthesize velocityY;
-@synthesize health;
 
-- (id)init {
-    self = [super init];
-    if( self != nil ) {
-        velocityX = 0.0;
-        velocityY = 0.0;
+@synthesize isIDLE;
+@synthesize isSHOOT;
+
+- (id)initWithGround:(CCSprite*)gr
+{
+    self = [super initWithFile:@"enemy.png"];
+    if( self != nil )
+    {
+        ground = gr;
+        
+        [self prepare];
+        
         isIDLE = YES;
+        isSHOOT = NO;
+        
+        [self setPosition:CGPointMake(arc4random() % (int) [LevelManager sharedManager].gameAreaSize.width, arc4random() % (int)[LevelManager sharedManager].gameAreaSize.height)];
+        [[LevelManager sharedManager].enemyArray addObject:self];
+        [self setUpSchedule];
     }
     return self;
 }
 
 - (void) setUpSchedule
 {
+    targetPosition = self.position;
     isIDLE = YES;
+    [self schedule:@selector(decisionMaking:) interval:1.0f];
     [self schedule:@selector(moveIdle:)interval:1.0f/60.0f];
 }
 
 - (void) moveToPlayer
 {
-    float dx = self.position.x - targetPosition.x;
-    float dy = self.position.y - targetPosition.y;
-    self.position = ccp(self.position.x - dx / [self maxSpeed], self.position.y - dy / [self maxSpeed]);
-}
-
-- (void) moveIdle
-{
-    if (isIDLE) {
-        NSLog(@"hello idle move");
+    isIDLE = NO;
+    
+    if (!isSHOOT) {
+        float dx = self.position.x - targetPosition.x;
+        float dy = self.position.y - targetPosition.y;
+        CGFloat distanceApart = ccpDistance(self.position, targetPosition);
+        if (distanceApart>20)
+        {
+            self.position = ccp(self.position.x - dx / [self maxSpeed], self.position.y - dy / [self maxSpeed]);
+        }
     }
 }
 
-- (CGFloat) maxSpeed
+- (void) decisionMaking:(ccTime)dt
 {
-    return 100.0;
-}
-- (CGFloat) friction
-{
-    return 0.8;
-}
-- (CGFloat) acceleration
-{
-    return 0.9;
+    int num = arc4random() % 3;
+    isSHOOT = NO;
+    
+    if (isIDLE)
+    {
+        if (num == 0) {
+           // NSLog(@"NaN");
+        }
+        if (num == 1) {
+           // NSLog(@"Walk around");
+            CGSize winSize = [[CCDirector sharedDirector] winSize];
+            targetPosition = ccp(arc4random() % (int) winSize.width, arc4random() % (int) winSize.height);
+        }
+        
+    }else{
+        if (num == 2) {
+           // NSLog(@"SHOOT THAT MOTHERFUCKER");
+            isSHOOT = YES;
+            [self fireBullet:targetPosition atLayer:(BaseLayer*)ground];
+        }
+    }
 }
 
-- (void) updateTargetPosition:(CGPoint)tPosition
+- (void) moveIdle:(ccTime)dt
 {
-    targetPosition = tPosition;
+    if (isIDLE) {
+        float dx = self.position.x - targetPosition.x;
+        float dy = self.position.y - targetPosition.y;
+        self.position = ccp(self.position.x - dx / ([self maxSpeed]*2.5), self.position.y - dy / ([self maxSpeed]*2.5));
+    }
 }
 
 - (void) setPositionGraphic:(NSMutableArray *)movementData
 {
     //    NSLog(@"movementData : %@",[movementData description]);
+}
+
+// custom setup
+- (CGFloat) maxSpeed
+{
+    return 100.0;
 }
 
 - (void)dealloc {

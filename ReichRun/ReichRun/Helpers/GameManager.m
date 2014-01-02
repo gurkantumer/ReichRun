@@ -12,6 +12,7 @@
 
 static GameManager *manager = nil;
 
+
 - (id)init
 {
     if ((self = [super init]))

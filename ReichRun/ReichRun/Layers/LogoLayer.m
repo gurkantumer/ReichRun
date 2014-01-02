@@ -64,8 +64,10 @@
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:1] withColor:ccBLACK]];
 }
 
-- (void) dealloc
+- (void)dealloc
 {
-	[super dealloc];
+    [self removeAllChildrenWithCleanup:YES];
+    [super dealloc];
 }
+
 @end

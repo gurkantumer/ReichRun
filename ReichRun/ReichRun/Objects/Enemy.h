@@ -6,33 +6,20 @@
 //  Copyright (c) 2013 Studio Nord. All rights reserved.
 //
 
-#import "CCSprite.h"
+#import "Creature.h"
 
-@interface Enemy : CCSprite
+@interface Enemy : Creature
 {
-    CGFloat velocityX;
-    CGFloat velocityY;
-    
-    CGFloat health;
-    
-    CGPoint targetPosition;
-    
     BOOL isIDLE;
+    BOOL isSHOOT;
 }
 
-@property (nonatomic) CGFloat velocityX;
-@property (nonatomic) CGFloat velocityY;
-@property (nonatomic) CGFloat health;
+@property (nonatomic) BOOL isIDLE;
+@property (nonatomic) BOOL isSHOOT;
 
 - (void) setPositionGraphic:(NSMutableArray *)movementData;
-- (void) updateTargetPosition:(CGPoint)tPosition;
 - (void) setUpSchedule;
 - (void) moveToPlayer;
-- (void) moveIdle;
-
-// static values
-- (CGFloat) maxSpeed;
-- (CGFloat) friction;
-- (CGFloat) acceleration;
+- (void) moveIdle:(ccTime)dt;
 
 @end

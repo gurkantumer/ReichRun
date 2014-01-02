@@ -26,4 +26,10 @@
 #define kCAPS_OFF_LEFT 100
 #define kCAPS_OFF_RIGHT 97
 
+/// notifications
+
+#define kHEALTH_ADD @"health_added"
+#define kHEALTH_DROP @"health_dropped"
+#define kHEALTH_ZERO @"player_died"
+
 #endif

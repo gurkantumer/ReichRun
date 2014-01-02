@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>73C2608A-0820-4AAC-8C21-D069A2DBDBBF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ReichRun</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BEB147A9-092C-4EA5-81AB-2557E059DDC8</key>
+		<string>https://github.com/gurkantumer/ReichRun.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ReichRun/ReichRun.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BEB147A9-092C-4EA5-81AB-2557E059DDC8</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/gurkantumer/ReichRun.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BEB147A9-092C-4EA5-81AB-2557E059DDC8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BEB147A9-092C-4EA5-81AB-2557E059DDC8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ReichRun</string>
+		</dict>
+	</array>
+</dict>
+</plist>

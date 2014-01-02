@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		736983501871A67A004211A9 /* Ground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7369834F1871A67A004211A9 /* Ground.m */; };
+		736983521871A86B004211A9 /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 736983511871A86B004211A9 /* ground.png */; };
+		736983551871AAD6004211A9 /* BaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 736983541871AAD6004211A9 /* BaseObject.m */; };
+		736983581871B52D004211A9 /* HealthPack.m in Sources */ = {isa = PBXBuildFile; fileRef = 736983571871B52D004211A9 /* HealthPack.m */; };
+		7369835A1871B6AE004211A9 /* health.png in Resources */ = {isa = PBXBuildFile; fileRef = 736983591871B6AE004211A9 /* health.png */; };
+		7369835D1871BC7D004211A9 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7369835C1871BC7D004211A9 /* LevelManager.m */; };
+		7369835F1871C4C3004211A9 /* enemy.png in Resources */ = {isa = PBXBuildFile; fileRef = 7369835E1871C4C3004211A9 /* enemy.png */; };
+		736983621872AEF5004211A9 /* Creature.m in Sources */ = {isa = PBXBuildFile; fileRef = 736983611872AEF5004211A9 /* Creature.m */; };
+		736983671872B4BF004211A9 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 736983661872B4BF004211A9 /* bullet.png */; };
+		7369836E1874EC86004211A9 /* CCShake.m in Sources */ = {isa = PBXBuildFile; fileRef = 7369836D1874EC86004211A9 /* CCShake.m */; };
 		739516BC1870CE4C00D0C970 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739516BB1870CE4C00D0C970 /* QuartzCore.framework */; };
 		739516BE1870CE4C00D0C970 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739516BD1870CE4C00D0C970 /* OpenGL.framework */; };
 		739516C01870CE4C00D0C970 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 739516BF1870CE4C00D0C970 /* OpenAL.framework */; };
@@ -143,6 +153,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7369834E1871A67A004211A9 /* Ground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ground.h; path = ReichRun/Objects/Ground.h; sourceTree = "<group>"; };
+		7369834F1871A67A004211A9 /* Ground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ground.m; path = ReichRun/Objects/Ground.m; sourceTree = "<group>"; };
+		736983511871A86B004211A9 /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ground.png; path = Resources/Images/misc/ground.png; sourceTree = "<group>"; };
+		736983531871AAD6004211A9 /* BaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseObject.h; path = ReichRun/Objects/BaseObject.h; sourceTree = "<group>"; };
+		736983541871AAD6004211A9 /* BaseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseObject.m; path = ReichRun/Objects/BaseObject.m; sourceTree = "<group>"; };
+		736983561871B52D004211A9 /* HealthPack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HealthPack.h; path = ReichRun/Objects/HealthPack.h; sourceTree = "<group>"; };
+		736983571871B52D004211A9 /* HealthPack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthPack.m; path = ReichRun/Objects/HealthPack.m; sourceTree = "<group>"; };
+		736983591871B6AE004211A9 /* health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = health.png; path = Resources/Images/misc/health.png; sourceTree = "<group>"; };
+		7369835B1871BC7D004211A9 /* LevelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelManager.h; path = Helpers/LevelManager.h; sourceTree = "<group>"; };
+		7369835C1871BC7D004211A9 /* LevelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelManager.m; path = Helpers/LevelManager.m; sourceTree = "<group>"; };
+		7369835E1871C4C3004211A9 /* enemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enemy.png; path = Resources/Images/misc/enemy.png; sourceTree = "<group>"; };
+		736983601872AEF5004211A9 /* Creature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Creature.h; path = ReichRun/Objects/Creature.h; sourceTree = "<group>"; };
+		736983611872AEF5004211A9 /* Creature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Creature.m; path = ReichRun/Objects/Creature.m; sourceTree = "<group>"; };
+		736983661872B4BF004211A9 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bullet.png; path = Resources/Images/misc/bullet.png; sourceTree = "<group>"; };
+		7369836C1874EC86004211A9 /* CCShake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCShake.h; path = Helpers/Effects/CCShake.h; sourceTree = "<group>"; };
+		7369836D1874EC86004211A9 /* CCShake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCShake.m; path = Helpers/Effects/CCShake.m; sourceTree = "<group>"; };
 		739516B81870CE4C00D0C970 /* ReichRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReichRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		739516BB1870CE4C00D0C970 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		739516BD1870CE4C00D0C970 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -451,6 +477,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		736983631872B047004211A9 /* Creatures */ = {
+			isa = PBXGroup;
+			children = (
+				736983601872AEF5004211A9 /* Creature.h */,
+				736983611872AEF5004211A9 /* Creature.m */,
+				739518741870F87600D0C970 /* Player.h */,
+				739518751870F87600D0C970 /* Player.m */,
+				7395187C1871315600D0C970 /* Enemy.h */,
+				7395187D1871315600D0C970 /* Enemy.m */,
+			);
+			name = Creatures;
+			sourceTree = "<group>";
+		};
+		736983641872B053004211A9 /* Drops */ = {
+			isa = PBXGroup;
+			children = (
+				736983561871B52D004211A9 /* HealthPack.h */,
+				736983571871B52D004211A9 /* HealthPack.m */,
+			);
+			name = Drops;
+			sourceTree = "<group>";
+		};
+		736983651872B05D004211A9 /* OtherItems */ = {
+			isa = PBXGroup;
+			children = (
+				7369834E1871A67A004211A9 /* Ground.h */,
+				7369834F1871A67A004211A9 /* Ground.m */,
+			);
+			name = OtherItems;
+			sourceTree = "<group>";
+		};
+		7369836B1874EC5B004211A9 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				7369836C1874EC86004211A9 /* CCShake.h */,
+				7369836D1874EC86004211A9 /* CCShake.m */,
+			);
+			name = Effects;
+			sourceTree = "<group>";
+		};
 		739516AF1870CE4C00D0C970 = {
 			isa = PBXGroup;
 			children = (
@@ -897,11 +963,14 @@
 		7395185D1870D27400D0C970 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				7369836B1874EC5B004211A9 /* Effects */,
 				7395185C1870D26F00D0C970 /* Config.h */,
 				739518671870DF6600D0C970 /* SceneManager.h */,
 				739518681870DF6600D0C970 /* SceneManager.m */,
 				739518701870F2A500D0C970 /* GameManager.h */,
 				739518711870F2A500D0C970 /* GameManager.m */,
+				7369835B1871BC7D004211A9 /* LevelManager.h */,
+				7369835C1871BC7D004211A9 /* LevelManager.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -918,6 +987,10 @@
 		739518621870D6FC00D0C970 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				736983661872B4BF004211A9 /* bullet.png */,
+				7369835E1871C4C3004211A9 /* enemy.png */,
+				736983591871B6AE004211A9 /* health.png */,
+				736983511871A86B004211A9 /* ground.png */,
 				739518651870DB7600D0C970 /* logo@2x.png */,
 				739518631870D70600D0C970 /* logo.png */,
 			);
@@ -927,10 +1000,11 @@
 		739518731870F80D00D0C970 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				739518741870F87600D0C970 /* Player.h */,
-				739518751870F87600D0C970 /* Player.m */,
-				7395187C1871315600D0C970 /* Enemy.h */,
-				7395187D1871315600D0C970 /* Enemy.m */,
+				736983531871AAD6004211A9 /* BaseObject.h */,
+				736983541871AAD6004211A9 /* BaseObject.m */,
+				736983641872B053004211A9 /* Drops */,
+				736983631872B047004211A9 /* Creatures */,
+				736983651872B05D004211A9 /* OtherItems */,
 			);
 			name = Objects;
 			path = ..;
@@ -1016,8 +1090,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				736983521871A86B004211A9 /* ground.png in Resources */,
+				736983671872B4BF004211A9 /* bullet.png in Resources */,
 				739516CC1870CE4C00D0C970 /* InfoPlist.strings in Resources */,
+				7369835F1871C4C3004211A9 /* enemy.png in Resources */,
 				739518661870DB7600D0C970 /* logo@2x.png in Resources */,
+				7369835A1871B6AE004211A9 /* health.png in Resources */,
 				73951879187100DB00D0C970 /* char.png in Resources */,
 				739518641870D70600D0C970 /* logo.png in Resources */,
 				7395182B1870CE4D00D0C970 /* ChangeLog in Resources */,
@@ -1071,6 +1149,7 @@
 				739517F11870CE4D00D0C970 /* NSThread+performBlock.m in Sources */,
 				739516F81870CE4C00D0C970 /* CCActionTiledGrid.m in Sources */,
 				739518691870DF6600D0C970 /* SceneManager.m in Sources */,
+				736983551871AAD6004211A9 /* BaseObject.m in Sources */,
 				7395173F1870CE4C00D0C970 /* CCMenuItem.m in Sources */,
 				739516DA1870CE4C00D0C970 /* CCActionCamera.m in Sources */,
 				7395180C1870CE4D00D0C970 /* CDXPropertyModifierAction.m in Sources */,
@@ -1099,8 +1178,10 @@
 				739517671870CE4C00D0C970 /* CCScene.m in Sources */,
 				739516E61870CE4C00D0C970 /* CCActionGrid3D.m in Sources */,
 				7395186F1870E33E00D0C970 /* GameLayer.m in Sources */,
+				7369836E1874EC86004211A9 /* CCShake.m in Sources */,
 				7395182F1870CE4D00D0C970 /* mat4stack.c in Sources */,
 				7395178B1870CE4D00D0C970 /* CCSpriteFrameCache.m in Sources */,
+				7369835D1871BC7D004211A9 /* LevelManager.m in Sources */,
 				739517141870CE4C00D0C970 /* CCDirector.m in Sources */,
 				739517041870CE4C00D0C970 /* CCAtlasNode.m in Sources */,
 				7395184A1870CE4D00D0C970 /* main.m in Sources */,
@@ -1116,7 +1197,9 @@
 				739517A01870CE4D00D0C970 /* CCTMXObjectGroup.m in Sources */,
 				739518021870CE4D00D0C970 /* CDAudioManager.m in Sources */,
 				739517AF1870CE4D00D0C970 /* CCTransitionProgress.m in Sources */,
+				736983501871A67A004211A9 /* Ground.m in Sources */,
 				739517D21870CE4D00D0C970 /* CCGLView.m in Sources */,
+				736983621872AEF5004211A9 /* Creature.m in Sources */,
 				739518061870CE4D00D0C970 /* CDOpenALSupport.m in Sources */,
 				739516E91870CE4C00D0C970 /* CCActionInstant.m in Sources */,
 				7395170A1870CE4C00D0C970 /* CCClippingNode.m in Sources */,
@@ -1148,6 +1231,7 @@
 				739517071870CE4C00D0C970 /* CCCamera.m in Sources */,
 				739517011870CE4C00D0C970 /* CCAnimationCache.m in Sources */,
 				739517231870CE4C00D0C970 /* CCGLProgram.m in Sources */,
+				736983581871B52D004211A9 /* HealthPack.m in Sources */,
 				739518131870CE4D00D0C970 /* SimpleAudioEngine.m in Sources */,
 				739517C51870CE4D00D0C970 /* CCTouchDispatcher.m in Sources */,
 				739517481870CE4C00D0C970 /* CCNode.m in Sources */,

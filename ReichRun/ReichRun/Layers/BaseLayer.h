@@ -10,7 +10,18 @@
 #import "cocos2d.h"
 
 @interface BaseLayer : CCLayer
+{
+    CGPoint crossHairPosition;
+    CGPoint mousePosition;
+}
+
+@property (nonatomic) CGPoint crossHairPosition;
+@property (nonatomic) CGPoint mousePosition;
 
 +(CCScene *) scene;
+
+- (void) updateGlobalPositions;
+- (void) notificationHandler:(NSNotification*)notification;
+- (void) addLabelWithText:(NSString *)str atPoint:(CGPoint)point;
 
 @end
