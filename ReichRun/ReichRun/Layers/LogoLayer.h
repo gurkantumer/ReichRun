@@ -8,7 +8,8 @@
 
 #import "BaseLayer.h"
 
-@interface LogoLayer : BaseLayer {
+@interface LogoLayer : BaseLayer
+{
     CCSprite *logoSprite;
 }
 

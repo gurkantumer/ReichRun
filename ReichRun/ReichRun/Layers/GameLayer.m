@@ -70,6 +70,10 @@
         crossHair = [[CCSprite alloc] initWithFile:@"crosshair.png"];
         [ground addChild:crossHair z:2];
     
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_ADD object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_DROP object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_ZERO object:nil];
+        
         [self scheduleUpdate];
 	}
 	return self;
@@ -276,20 +280,28 @@
 
 - (void) gameEnded
 {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:1] withColor:ccBLACK]];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_ADD object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_DROP object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_ZERO object:nil];
     
-    [self removeAllChildrenWithCleanup:YES];
-    player = nil;
-    [playerMovement removeAllObjects];
-    playerMovement = nil;
+    [[LevelManager sharedManager].enemyArray removeAllObjects];
+    [[LevelManager sharedManager].bulletArray removeAllObjects];
+    [[LevelManager sharedManager].enemyBulletArray removeAllObjects];
     
+    [self unscheduleUpdate];
+    [self unscheduleAllSelectors];
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:2] withColor:ccBLACK]];
 }
 
 - (void) dealloc
 {
+    NSLog(@"game layer dealloc called");
+    [playerMovement removeAllObjects];
+    playerMovement = nil;
+    
+    [self removeAllChildrenWithCleanup:YES];
     [super dealloc];
 }
 

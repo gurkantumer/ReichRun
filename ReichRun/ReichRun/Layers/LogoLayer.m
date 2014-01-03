@@ -25,9 +25,6 @@
         [self addChild:logoSprite];
         
         [self animateLogo];
-        //[self animateLogoEnded];
-        
-        //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:nil];
 	}
 	return self;
 }
@@ -62,11 +59,17 @@
 - (void) animateLogoEnded
 {
     NSLog(@"ended");
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:0] withColor:ccBLACK]];
+    [self setKeyboardEnabled:NO];
+    [self setMouseEnabled:NO];
+    
+    [[[CCDirector sharedDirector] eventDispatcher] removeMouseDelegate:self];
+    
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:1] withColor:ccBLACK]];
 }
 
 - (void)dealloc
 {
+    NSLog(@"logolayer dealloc called");
     [self removeAllChildrenWithCleanup:YES];
     [super dealloc];
 }

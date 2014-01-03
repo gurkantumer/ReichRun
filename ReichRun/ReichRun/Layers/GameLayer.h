@@ -27,4 +27,6 @@
 @property (nonatomic, retain) Ground *ground;
 @property (nonatomic, retain) CCSprite *crossHair;
 
+- (void) notificationHandler:(NSNotification*)notification;
+
 @end

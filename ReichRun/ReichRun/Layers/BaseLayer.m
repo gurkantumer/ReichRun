@@ -25,21 +25,14 @@
 
 -(id) init
 {
-	if( (self=[super init]) ) {
+	if( (self=[super init]) )
+    {
 		[self setKeyboardEnabled:YES];
         [self setMouseEnabled:YES];
         
         [[[CCDirector sharedDirector] eventDispatcher] addMouseDelegate:self priority:0];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_ADD object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_DROP object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_ZERO object:nil];
-	}
+    }
 	return self;
-}
-
-- (void) notificationHandler:(NSNotification*)notification
-{
 }
 
 - (void) addLabelWithText:(NSString *)str atPoint:(CGPoint)point
@@ -92,7 +85,7 @@
 
 - (void) dealloc
 {
-    [[[CCDirector sharedDirector] eventDispatcher] removeAllMouseDelegates];
+    NSLog(@"dealloc called");
     [self removeAllChildrenWithCleanup:YES];
     [super dealloc];
 }

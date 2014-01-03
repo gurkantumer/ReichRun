@@ -85,15 +85,15 @@
 {
     if (isIDLE) {
     
-        CGPoint start = self.position;
-        CGPoint end = targetPosition;
-        float distance = ccpDistance(start, end);
-        float duration = distance/[self maxSpeed];
-        [self runAction:[CCMoveTo actionWithDuration:duration position:targetPosition]];
+        //CGPoint start = self.position;
+        //CGPoint end = targetPosition;
+        //float distance = ccpDistance(start, end);
+        //float duration = distance/[self maxSpeed];
+        //[self runAction:[CCMoveTo actionWithDuration:duration position:targetPosition]];
         
-        //float dx = self.position.x - targetPosition.x;
-        //float dy = self.position.y - targetPosition.y;
-        //self.position = ccp(self.position.x - dx / ([self maxSpeed]*2.5), self.position.y - dy / ([self maxSpeed]*2.5));
+        float dx = self.position.x - targetPosition.x;
+        float dy = self.position.y - targetPosition.y;
+        self.position = ccp(self.position.x - dx / ([self maxSpeed]*2.5), self.position.y - dy / ([self maxSpeed]*2.5));
     }
 }
 

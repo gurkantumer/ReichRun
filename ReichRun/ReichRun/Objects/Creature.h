@@ -17,7 +17,7 @@
 }
 
 @property (nonatomic) CGFloat health;
-@property (nonatomic, strong) CCSprite *ground;
+@property (nonatomic, retain) CCSprite *ground;
 
 - (id)initWithGround:(CCSprite*)gr;
 - (void) prepare;

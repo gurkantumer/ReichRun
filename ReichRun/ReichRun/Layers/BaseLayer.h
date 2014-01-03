@@ -21,7 +21,6 @@
 +(CCScene *) scene;
 
 - (void) updateGlobalPositions;
-- (void) notificationHandler:(NSNotification*)notification;
 - (void) addLabelWithText:(NSString *)str atPoint:(CGPoint)point;
 
 @end

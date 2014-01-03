@@ -28,11 +28,11 @@
     float healthValue;
 }
 
-@property (nonatomic, strong) NSMutableArray *enemyArray;
-@property (nonatomic, strong) NSMutableArray *healthArray;
-@property (nonatomic, strong) NSMutableArray *dropArray;
-@property (nonatomic, strong) NSMutableArray *bulletArray;
-@property (nonatomic, strong) NSMutableArray *enemyBulletArray;
+@property (nonatomic, retain) NSMutableArray *enemyArray;
+@property (nonatomic, retain) NSMutableArray *healthArray;
+@property (nonatomic, retain) NSMutableArray *dropArray;
+@property (nonatomic, retain) NSMutableArray *bulletArray;
+@property (nonatomic, retain) NSMutableArray *enemyBulletArray;
 
 @property (nonatomic) CGSize gameAreaSize;
 @property (nonatomic) int healthCount;
