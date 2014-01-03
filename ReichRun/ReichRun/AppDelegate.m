@@ -14,8 +14,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    int width = 600;//[[NSScreen mainScreen] frame].size.width-100;
-    int height = 400;//[[NSScreen mainScreen] frame].size.height-60;
+    int width = [[NSScreen mainScreen] frame].size.width-100;
+    int height = [[NSScreen mainScreen] frame].size.height-60;
     
     [window_ setFrame:NSMakeRect(0, 0, width, height) display:YES];
     

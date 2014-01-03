@@ -49,9 +49,9 @@
         float dx = self.position.x - targetPosition.x;
         float dy = self.position.y - targetPosition.y;
         CGFloat distanceApart = ccpDistance(self.position, targetPosition);
-        if (distanceApart>20)
+        if (distanceApart>100)
         {
-            self.position = ccp(self.position.x - dx / [self maxSpeed], self.position.y - dy / [self maxSpeed]);
+            self.position = ccp(self.position.x - dx / ([self maxSpeed]*.4), self.position.y - dy / ([self maxSpeed]*.4));
         }
     }
 }
@@ -83,17 +83,11 @@
 
 - (void) moveIdle:(ccTime)dt
 {
-    if (isIDLE) {
-    
-        //CGPoint start = self.position;
-        //CGPoint end = targetPosition;
-        //float distance = ccpDistance(start, end);
-        //float duration = distance/[self maxSpeed];
-        //[self runAction:[CCMoveTo actionWithDuration:duration position:targetPosition]];
-        
+    if (isIDLE)
+    {
         float dx = self.position.x - targetPosition.x;
         float dy = self.position.y - targetPosition.y;
-        self.position = ccp(self.position.x - dx / ([self maxSpeed]*2.5), self.position.y - dy / ([self maxSpeed]*2.5));
+        self.position = ccp(self.position.x - dx / ([self maxSpeed]), self.position.y - dy / ([self maxSpeed]));
     }
 }
 
@@ -105,7 +99,7 @@
 // custom setup
 - (CGFloat) maxSpeed
 {
-    return 10.0;
+    return 5.0;
 }
 
 - (void)dealloc {
