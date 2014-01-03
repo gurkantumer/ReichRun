@@ -27,6 +27,7 @@
         isSHOOT = NO;
         
         [self setPosition:CGPointMake(arc4random() % (int) [LevelManager sharedManager].gameAreaSize.width, arc4random() % (int)[LevelManager sharedManager].gameAreaSize.height)];
+
         [[LevelManager sharedManager].enemyArray addObject:self];
         [self setUpSchedule];
     }
@@ -48,11 +49,7 @@
     if (!isSHOOT) {
         float dx = self.position.x - targetPosition.x;
         float dy = self.position.y - targetPosition.y;
-        CGFloat distanceApart = ccpDistance(self.position, targetPosition);
-        if (distanceApart>100)
-        {
-            self.position = ccp(self.position.x - dx / ([self maxSpeed]*.4), self.position.y - dy / ([self maxSpeed]*.4));
-        }
+        self.position = ccp(self.position.x - (dx / [self maxSpeed]), self.position.y - (dy / [self maxSpeed]));
     }
 }
 
@@ -87,7 +84,7 @@
     {
         float dx = self.position.x - targetPosition.x;
         float dy = self.position.y - targetPosition.y;
-        self.position = ccp(self.position.x - dx / ([self maxSpeed]), self.position.y - dy / ([self maxSpeed]));
+        self.position = ccp(self.position.x - (dx / ([self maxSpeed])), self.position.y - (dy / ([self maxSpeed])));
     }
 }
 
@@ -99,11 +96,17 @@
 // custom setup
 - (CGFloat) maxSpeed
 {
-    return 5.0;
+    return 100.0;
+}
+
+- (void) killCreature
+{
+    [self unscheduleAllSelectors];
+    [super killCreature];
 }
 
 - (void)dealloc {
-    
+    NSLog(@"Enemy dealloc");
     [self removeAllChildrenWithCleanup:YES];
     // Deallocations...
     [super dealloc];

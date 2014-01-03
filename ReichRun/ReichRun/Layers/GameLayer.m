@@ -123,7 +123,6 @@
                 {
                     [[[LevelManager sharedManager] bulletArray] removeObject:bullet];
                     [ground removeChild:bullet cleanup:YES];
-                    NSLog(@"hit enemy");
                     enemy.isIDLE = NO;
                     [enemy updateHealth:[LevelManager sharedManager].healthValue * -1];
                 }
@@ -243,7 +242,6 @@
 
 - (void) notificationHandler:(NSNotification*)notification
 {
-    NSLog(@"NotificationLayer : :%@, %@", notification.name,[notification.userInfo description]);
     if ([notification.name isEqualToString:kHEALTH_ADD]) {
         float xVal = [[notification.userInfo valueForKey:@"locationX"] floatValue];
         float yVal = [[notification.userInfo valueForKey:@"locationY"] floatValue]+50;
@@ -260,9 +258,8 @@
     if ([notification.name isEqualToString:kHEALTH_ZERO]) {
         NSLog(@"GAME ENDED");
         
-        //[[GameManager sharedManager] setKeyboardEnabledState:NO];
-        //[[GameManager sharedManager] setMouseEnabledState:NO];
-        //[[GameManager sharedManager] setGameEnabledState:NO];
+        [self unscheduleAllSelectors];
+        [self unscheduleUpdate];
         
         CCLayerColor *color = [[CCLayerColor alloc] initWithColor:ccc4(0, 0, 0, 150) width:2000 height:2000];
         [self addChild:color];
@@ -285,14 +282,34 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_DROP object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_ZERO object:nil];
     
-    [[LevelManager sharedManager].enemyArray removeAllObjects];
-    [[LevelManager sharedManager].bulletArray removeAllObjects];
-    [[LevelManager sharedManager].enemyBulletArray removeAllObjects];
+    [player killCreature];
+    [ground removeChild:player];
     
-    [self unscheduleUpdate];
-    [self unscheduleAllSelectors];
+    for (int i=0; i<[LevelManager sharedManager].enemyArray.count; i++) {
+        [(Enemy*)[[LevelManager sharedManager].enemyArray objectAtIndex:i] killCreature];
+        [[[LevelManager sharedManager].enemyArray objectAtIndex:i] removeFromParentAndCleanup:YES];
+    }
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:2] withColor:ccBLACK]];
+    
+    for (int i=0; i<[LevelManager sharedManager].bulletArray.count; i++) {
+        [[[LevelManager sharedManager].bulletArray objectAtIndex:i] removeFromParentAndCleanup:YES];
+    }
+    
+    for (int i=0; i<[LevelManager sharedManager].enemyBulletArray.count; i++) {
+        [[[LevelManager sharedManager].enemyBulletArray objectAtIndex:i] removeFromParentAndCleanup:YES];
+    }
+    
+    for (int i=0; i<[LevelManager sharedManager].healthArray.count; i++) {
+        [[[LevelManager sharedManager].healthArray objectAtIndex:i] removeFromParentAndCleanup:YES];
+    }
+    
+    for (int i=0; i<[LevelManager sharedManager].dropArray.count; i++) {
+        [[[LevelManager sharedManager].dropArray objectAtIndex:i] removeFromParentAndCleanup:YES];
+    }
+    
+    [[LevelManager sharedManager] cleanUp];
+    
+    [[CCDirector sharedDirector] replaceScene:[[SceneManager sharedSceneManager] sceneWithID:2]];
 }
 
 - (void) dealloc

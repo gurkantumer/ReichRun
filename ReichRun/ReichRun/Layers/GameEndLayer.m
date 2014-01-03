@@ -29,27 +29,22 @@
         [self addChild:label];
         
         [self setMouseEnabled:YES];
-                
-        [[[CCDirector sharedDirector] eventDispatcher] addMouseDelegate:self priority:0];
-        
-        [self scheduleUpdate];
     }
     return self;
-}
-
-- (void) update:(ccTime)dt
-{
 }
 
 -(BOOL) ccMouseDown:(NSEvent *)event
 {
     NSLog(@"hello");
+    [self setMouseEnabled:NO];
+    
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:1] withColor:ccBLACK]];
     return YES;
 }
 
 - (void) dealloc
 {
+    NSLog(@"gameend dealloc");
     [self removeAllChildrenWithCleanup:YES];
     [super dealloc];
 }

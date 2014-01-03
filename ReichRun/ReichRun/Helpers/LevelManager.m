@@ -56,4 +56,13 @@ static LevelManager *sharedManager = nil;
     }
 }
 
+- (void) cleanUp
+{
+    [enemyArray removeAllObjects];
+    [healthArray removeAllObjects];
+    [dropArray removeAllObjects];
+    [bulletArray removeAllObjects];
+    [enemyBulletArray removeAllObjects];
+}
+
 @end

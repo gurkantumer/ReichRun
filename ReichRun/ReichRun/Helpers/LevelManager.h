@@ -43,4 +43,6 @@
 // STATIC FUNCTIONS
 + (LevelManager *) sharedManager;
 
+- (void) cleanUp;
+
 @end

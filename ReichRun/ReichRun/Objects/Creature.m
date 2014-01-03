@@ -26,14 +26,6 @@
 - (void) prepare
 {
     health = 100;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_ADD object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_DROP object:nil];
-}
-
-- (void) notificationHandler:(NSNotification*)notify
-{
-    NSLog(@"notification : %@",notify.name);
 }
 
 - (void) fireBullet:(CGPoint)point atLayer:(BaseLayer*)lyr
@@ -121,17 +113,12 @@
             [self killCreature];
         }
     }
-    
-    NSLog(@"HEALTH : %f",health);
 }
 
 - (void) killCreature
 {
     // death animation
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_ADD object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_DROP object:nil];
     [self removeFromParentAndCleanup:YES];
-    
 }
 
 - (void) updateTargetPosition:(CGPoint)tPosition

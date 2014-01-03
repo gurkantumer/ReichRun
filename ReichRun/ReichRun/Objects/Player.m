@@ -19,6 +19,8 @@
         ground = gr;
         [self prepare];
         [self setPosition:CGPointMake(100, 100)];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_ADD object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_DROP object:nil];
     }
     return self;
 }
@@ -103,8 +105,17 @@
     }
 }
 
-- (void)dealloc {
+- (void) killCreature
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_ADD object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_DROP object:nil];
+    [self unscheduleAllSelectors];
+    [super killCreature];
+}
 
+- (void)dealloc
+{
+    NSLog(@"Player dealloc");
     [self removeAllChildrenWithCleanup:YES];
     [super dealloc];
 }

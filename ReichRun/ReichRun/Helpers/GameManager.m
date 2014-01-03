@@ -68,4 +68,9 @@ static GameManager *manager = nil;
     isGamePlayable = state;
 }
 
+- (void) dealloc
+{
+    [super dealloc];
+}
+
 @end

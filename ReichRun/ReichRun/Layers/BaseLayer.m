@@ -29,8 +29,6 @@
     {
 		[self setKeyboardEnabled:YES];
         [self setMouseEnabled:YES];
-        
-        [[[CCDirector sharedDirector] eventDispatcher] addMouseDelegate:self priority:0];
     }
 	return self;
 }
@@ -51,7 +49,7 @@
 
 - (void) animateLabelEnded:(id)sender
 {
-    [self removeChild:sender cleanup:YES];
+    //[sender removeFromParentAndCleanup:YES];
 }
 
 - (void) updateGlobalPositions

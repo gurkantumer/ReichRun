@@ -22,12 +22,12 @@
 - (id)initWithGround:(CCSprite*)gr;
 - (void) prepare;
 - (void) updateTargetPosition:(CGPoint)tPosition;
-- (void) notificationHandler:(NSNotification*)notify;
 
 // game related actions
 
 - (void) fireBullet:(CGPoint)point atLayer:(BaseLayer*)lyr;
 - (void) bulletMoveFinished:(id)sender;
 - (void) updateHealth:(float)hValue;
+- (void) killCreature;
 
 @end
