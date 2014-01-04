@@ -101,12 +101,13 @@
         [self updateHealth:[LevelManager sharedManager].healthValue];
     }
     if ([notify.name isEqualToString:kHEALTH_DROP]) {
-        [self updateHealth:-30];
+        [self updateHealth:([LevelManager sharedManager].healthValue*-1)];
     }
 }
 
 - (void) killCreature
 {
+    ground = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_ADD object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_DROP object:nil];
     [self unscheduleAllSelectors];

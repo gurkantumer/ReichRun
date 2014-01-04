@@ -13,6 +13,7 @@
     CGPoint targetPosition;
 }
 
+- (id) initAtPoint:(CGPoint)point;
 - (void) updateTargetPosition:(CGPoint)tPosition;
 - (void) moveToPlayer;
 

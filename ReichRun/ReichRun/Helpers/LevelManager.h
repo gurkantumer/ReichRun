@@ -22,8 +22,8 @@
     CGSize gameAreaSize;
     int healthCount;
     int enemyCount;
-    
     int currentLevel;
+    int dropRate;
     
     float healthValue;
 }
@@ -44,5 +44,6 @@
 + (LevelManager *) sharedManager;
 
 - (void) cleanUp;
+- (void) generateDropAtPoint:(CGPoint)point;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "LevelManager.h"
+#import "GameManager.h"
 
 @implementation LevelManager
 
@@ -39,7 +40,8 @@ static LevelManager *sharedManager = nil;
         enemyCount = 10;
         currentLevel = 1;
         
-        healthValue = 10;
+        healthValue = 30;
+        dropRate = 300;
     }
     return self;
 }
@@ -54,6 +56,27 @@ static LevelManager *sharedManager = nil;
         }
         return sharedManager;
     }
+}
+
+- (void) generateDropAtPoint:(CGPoint)point
+{
+    // DROP GENERATION
+    
+    if ([[GameManager sharedManager] getGameState])
+    {
+        NSInteger randomValue = arc4random() % 1000;
+        NSLog(@"random : %li",(long)randomValue);
+        
+        if (randomValue <= dropRate)
+        {
+            NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+            [userInfo setValue:[NSString stringWithFormat:@"%f",point.x] forKey:@"locationX"];
+            [userInfo setValue:[NSString stringWithFormat:@"%f",point.y] forKey:@"locationY"];
+            [userInfo setValue:@"health" forKey:@"dropType"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kGENERATE_DROP object:nil userInfo:userInfo];
+        }
+    }
+    
 }
 
 - (void) cleanUp

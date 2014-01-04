@@ -31,5 +31,7 @@
 #define kHEALTH_ADD @"health_added"
 #define kHEALTH_DROP @"health_dropped"
 #define kHEALTH_ZERO @"player_died"
+#define kNO_ENEMY_LEFT @"all_enemies_dead"
+#define kGENERATE_DROP @"drop_generated"
 
 #endif

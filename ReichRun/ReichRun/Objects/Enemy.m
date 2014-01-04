@@ -102,6 +102,7 @@
 - (void) killCreature
 {
     [self unscheduleAllSelectors];
+    [[LevelManager sharedManager] generateDropAtPoint:self.position];
     [super killCreature];
 }
 

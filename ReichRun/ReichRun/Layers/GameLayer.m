@@ -48,6 +48,7 @@
         [[GameManager sharedManager] setKeyboardEnabledState:YES];
         [[GameManager sharedManager] setMouseEnabledState:YES];
         [[GameManager sharedManager] setGameEnabledState:YES];
+        [[GameManager sharedManager] setGameState:YES];
 
         ground = [[Ground alloc] init];
         [self addChild:ground];
@@ -63,7 +64,7 @@
         
         for (int ii = 0; ii<[LevelManager sharedManager].healthCount; ii++)
         {
-            HealthPack *health = [[HealthPack alloc] init];            
+            HealthPack *health = [[HealthPack alloc] initAtPoint:CGPointMake(arc4random() % (int) [LevelManager sharedManager].gameAreaSize.width, arc4random() % (int)[LevelManager sharedManager].gameAreaSize.height)];
             [ground addChild:health z:2];
         }
         
@@ -73,6 +74,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_ADD object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_DROP object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kHEALTH_ZERO object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kNO_ENEMY_LEFT object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kGENERATE_DROP object:nil];
         
         [self scheduleUpdate];
 	}
@@ -87,6 +90,10 @@
     
     if([[GameManager sharedManager] getGameEnabledState]){
         
+        if([LevelManager sharedManager].enemyArray.count==0){
+            NSLog(@"no more enemies left");
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNO_ENEMY_LEFT object:nil];
+        }
         //[ground updatePosition:playerMovement];
         [player updatePosition:playerMovement];
         
@@ -258,6 +265,8 @@
     if ([notification.name isEqualToString:kHEALTH_ZERO]) {
         NSLog(@"GAME ENDED");
         
+        [[GameManager sharedManager] setGameState:NO];
+        
         [self unscheduleAllSelectors];
         [self unscheduleUpdate];
         
@@ -273,6 +282,24 @@
         // CLEAR ALL
         
     }
+    
+    if ([notification.name isEqualToString:kNO_ENEMY_LEFT]) {
+        NSLog(@"GAME ENDED");
+    }
+    
+    if ([notification.name isEqualToString:kGENERATE_DROP])
+    {
+        if ([[notification.userInfo valueForKey:@"dropType"] isEqualToString:@"health"])
+        {
+            
+            float xVal = [[notification.userInfo valueForKey:@"locationX"] floatValue];
+            float yVal = [[notification.userInfo valueForKey:@"locationY"] floatValue];
+            CGPoint point = ccp(xVal, yVal);
+            HealthPack *health = [[HealthPack alloc] initAtPoint:point];
+            [ground addChild:health z:2];
+            
+        }
+    }
 }
 
 - (void) gameEnded
@@ -281,6 +308,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_ADD object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_DROP object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kHEALTH_ZERO object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNO_ENEMY_LEFT object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kGENERATE_DROP object:nil];
     
     [player killCreature];
     [ground removeChild:player];

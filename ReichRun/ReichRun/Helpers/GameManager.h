@@ -13,6 +13,7 @@
     BOOL isKeyboardEnabled;
     BOOL isMouseEnabled;
     BOOL isGamePlayable;
+    BOOL isGameEnded;
 }
 
 + (GameManager *) sharedManager;
@@ -27,5 +28,7 @@
 - (BOOL) getGameEnabledState;
 - (void) setGameEnabledState:(BOOL)state;
 
+- (BOOL) getGameState;
+- (void) setGameState:(BOOL)state;
 
 @end

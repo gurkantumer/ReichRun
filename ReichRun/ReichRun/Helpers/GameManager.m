@@ -68,6 +68,16 @@ static GameManager *manager = nil;
     isGamePlayable = state;
 }
 
+- (BOOL) getGameState
+{
+    return isGameEnded;
+}
+
+- (void) setGameState:(BOOL)state
+{
+    isGameEnded = state;
+}
+
 - (void) dealloc
 {
     [super dealloc];

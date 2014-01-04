@@ -16,9 +16,17 @@
     if( self != nil ) {
         velocityX = 0.0;
         velocityY = 0.0;
-        [self setPosition:CGPointMake(arc4random() % (int) [LevelManager sharedManager].gameAreaSize.width, arc4random() % (int)[LevelManager sharedManager].gameAreaSize.height)];
-        
         [[[LevelManager sharedManager] healthArray] addObject:self];
+    }
+    return self;
+}
+
+
+- (id) initAtPoint:(CGPoint)point
+{
+    self = [self init];
+    if (self!=nil) {
+        [self setPosition:point];
     }
     return self;
 }
