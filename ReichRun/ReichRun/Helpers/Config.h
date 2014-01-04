@@ -12,6 +12,8 @@
 #define kTOGGLE_DEBUG YES
 #define kTOGGLE_FULLSCREEN YES
 
+#define PTM_RATIO 32
+
 // colors
 #define CC_WHITE ccc4(255, 255, 255, 255)
 #define CC_GRAY ccc4(45, 45, 45, 255)
