@@ -66,7 +66,7 @@
     }
     
     // Get window size
-    CGSize walkSize = ground.contentSize;
+    /*CGSize walkSize = ground.contentSize;
     
     // Check if player stays within screen height
     if (playerPositionX > walkSize.width - 100) {
@@ -84,7 +84,7 @@
      } else if (playerPositionY < 100) {
          self.velocityY = self.velocityY * -1;//0.8;
          playerPositionY = playerPositionY + self.velocityY;
-     }
+     }*/
     
     // Calculate friction
     self.velocityX *= self.friction;

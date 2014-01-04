@@ -33,6 +33,8 @@
 {
 	if( (self=[super init]) )
     {
+        [self initPhysics];
+        
         if(!kTOGGLE_DEBUG)[NSCursor hide];
         
         //CGSize winSize = [[CCDirector sharedDirector] winSize];
@@ -56,10 +58,13 @@
         player = [[Player alloc] initWithGround:ground];
         [ground addChild:player z:1];
         
+        [self addBoxBodyForSprite:player];
+        
         for (int i = 0; i<[LevelManager sharedManager].enemyCount; i++)
         {
             Enemy *enemy = [[Enemy alloc] initWithGround:ground];
             [ground addChild:enemy z:2];
+            [self addBoxBodyForSprite:enemy];
         }
         
         for (int ii = 0; ii<[LevelManager sharedManager].healthCount; ii++)
@@ -78,10 +83,38 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:kGENERATE_DROP object:nil];
         
         [self scheduleUpdate];
-        
-        [self initPhysics];
+        [self schedule:@selector(tick:)];
 	}
 	return self;
+}
+- (void)tick:(ccTime)dt {
+    
+    int32 velocityIterations = 8;
+	int32 positionIterations = 1;
+	
+	world->Step(dt, velocityIterations, positionIterations);
+    
+    
+    // Loop through all of the Box2D bodies in our Box2D world..
+    for(b2Body *b = world->GetBodyList(); b; b=b->GetNext()) {
+        
+        // See if there's any user data attached to the Box2D body
+        // There should be, since we set it in addBoxBodyForSprite
+        if (b->GetUserData() != NULL) {
+            
+            // We know that the user data is a sprite since we set
+            // it that way, so cast it...
+            //CCSprite *sprite = (CCSprite *)b->GetUserData();
+            
+            // Convert the Cocos2D position/rotation of the sprite to the Box2D position/rotation
+            //b2Vec2 b2Position = b2Vec2(sprite.position.x/PTM_RATIO,
+            //                           sprite.position.y/PTM_RATIO);
+            //float32 b2Angle = -1 * CC_DEGREES_TO_RADIANS(sprite.rotation);
+            
+            // Update the Box2D position/rotation to match the Cocos2D position/rotation
+            //b->SetTransform(b2Position, b2Angle);
+        }
+    }
 }
 
 -(void) initPhysics
@@ -89,13 +122,11 @@
 	
 	CGSize s = [[LevelManager sharedManager] gameAreaSize];
     
-	b2Vec2 gravity;
-	gravity.Set(0.0f, -10.0f);
+	b2Vec2 gravity = b2Vec2(0.0f, 0.0f);
 	world = new b2World(gravity);
-	
-	
+    
 	// Do we want to let bodies sleep?
-	world->SetAllowSleeping(true);
+	world->SetAllowSleeping(false);
 	
 	world->SetContinuousPhysics(true);
 	
@@ -240,8 +271,8 @@
         centerX = eyeX = (player.position.x) - (winSize.width*.5f);
         centerY = eyeY = (player.position.y) - (winSize.height*.5f);
         
-        centerX = eyeX = clampf(centerX, 0.0f, ground.contentSize.width - winSize.width);
-        centerY = eyeY = clampf(centerY, 0.0f, ground.contentSize.height - winSize.height);
+        //centerX = eyeX = clampf(centerX, 0.0f, ground.contentSize.width - winSize.width);
+        //centerY = eyeY = clampf(centerY, 0.0f, ground.contentSize.height - winSize.height);
         
         [self.camera setCenterX:centerX centerY:centerY centerZ:centerZ];
         [self.camera setEyeX:eyeX eyeY:eyeY eyeZ:eyeZ];
@@ -433,5 +464,38 @@
     [self removeAllChildrenWithCleanup:YES];
     [super dealloc];
 }
+
+////
+
+- (void)addBoxBodyForSprite:(CCSprite *)sprite {
+    
+    b2BodyDef spriteBodyDef;
+    spriteBodyDef.type = b2_dynamicBody;
+    spriteBodyDef.position.Set(sprite.position.x/PTM_RATIO, sprite.position.y/PTM_RATIO);
+    spriteBodyDef.userData = sprite;
+    b2Body *spriteBody = world->CreateBody(&spriteBodyDef);
+    
+    b2PolygonShape spriteShape;
+    /*spriteShape.SetAsBox(sprite.contentSize.width/PTM_RATIO/2,
+     sprite.contentSize.height/PTM_RATIO/2);*/
+    int num = 6;
+    b2Vec2 verts[] = {b2Vec2(4.5f / PTM_RATIO, -17.7f / PTM_RATIO),
+        b2Vec2(20.5f / PTM_RATIO, 7.2f / PTM_RATIO),
+        b2Vec2(22.8f / PTM_RATIO, 29.5f / PTM_RATIO),
+        b2Vec2(-24.7f / PTM_RATIO, 31.0f / PTM_RATIO),
+        b2Vec2(-20.2f / PTM_RATIO, 4.7f / PTM_RATIO),
+        b2Vec2(-11.7f / PTM_RATIO, -17.5f / PTM_RATIO)};
+    spriteShape.Set(verts, num);
+    
+    b2FixtureDef spriteShapeDef;
+    spriteShapeDef.shape = &spriteShape;
+    spriteShapeDef.density = 10.0;
+    spriteShapeDef.isSensor = true;
+    
+    spriteBody->CreateFixture(&spriteShapeDef);
+    
+}
+
+
 
 @end

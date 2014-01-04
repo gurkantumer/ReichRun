@@ -200,6 +200,8 @@
 		73E63CF61878896600674490 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73E63CC61878896600674490 /* b2Rope.cpp */; };
 		73E63CF918788AAB00674490 /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = 73E63CF818788AAB00674490 /* GLES-Render.mm */; };
 		73E63CFB18788C9700674490 /* LICENSE_Box2D.txt in Resources */ = {isa = PBXBuildFile; fileRef = 73E63CFA18788C9700674490 /* LICENSE_Box2D.txt */; };
+		73E63CFE1878B90B00674490 /* BoxContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 73E63CFD1878B90B00674490 /* BoxContactListener.mm */; };
+		73E63D001878BB3700674490 /* ground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 73E63CFF1878BB3700674490 /* ground2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -604,6 +606,9 @@
 		73E63CF718788AAB00674490 /* GLES-Render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
 		73E63CF818788AAB00674490 /* GLES-Render.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "GLES-Render.mm"; sourceTree = "<group>"; };
 		73E63CFA18788C9700674490 /* LICENSE_Box2D.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE_Box2D.txt; sourceTree = "<group>"; };
+		73E63CFC1878B90B00674490 /* BoxContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxContactListener.h; sourceTree = "<group>"; };
+		73E63CFD1878B90B00674490 /* BoxContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BoxContactListener.mm; sourceTree = "<group>"; };
+		73E63CFF1878BB3700674490 /* ground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ground2.png; path = Resources/Images/misc/ground2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -704,6 +709,8 @@
 				7395184C1870CE4D00D0C970 /* AppDelegate.mm */,
 				73E63CF718788AAB00674490 /* GLES-Render.h */,
 				73E63CF818788AAB00674490 /* GLES-Render.mm */,
+				73E63CFC1878B90B00674490 /* BoxContactListener.h */,
+				73E63CFD1878B90B00674490 /* BoxContactListener.mm */,
 				7395185B1870D22B00D0C970 /* Layer */,
 				739518731870F80D00D0C970 /* Objects */,
 				7395185D1870D27400D0C970 /* Helpers */,
@@ -1145,6 +1152,7 @@
 				7369835E1871C4C3004211A9 /* enemy.png */,
 				736983591871B6AE004211A9 /* health.png */,
 				736983511871A86B004211A9 /* ground.png */,
+				73E63CFF1878BB3700674490 /* ground2.png */,
 				739518651870DB7600D0C970 /* logo@2x.png */,
 				739518631870D70600D0C970 /* logo.png */,
 			);
@@ -1415,6 +1423,7 @@
 				739516CF1870CE4C00D0C970 /* MainMenu.xib in Resources */,
 				7395187B1871054200D0C970 /* crosshair.png in Resources */,
 				739516D11870CE4C00D0C970 /* icon.icns in Resources */,
+				73E63D001878BB3700674490 /* ground2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1553,6 +1562,7 @@
 				736983501871A67A004211A9 /* Ground.m in Sources */,
 				739517D21870CE4D00D0C970 /* CCGLView.m in Sources */,
 				736983621872AEF5004211A9 /* Creature.m in Sources */,
+				73E63CFE1878B90B00674490 /* BoxContactListener.mm in Sources */,
 				739518061870CE4D00D0C970 /* CDOpenALSupport.m in Sources */,
 				73E63CF61878896600674490 /* b2Rope.cpp in Sources */,
 				739516E91870CE4C00D0C970 /* CCActionInstant.m in Sources */,
@@ -1653,6 +1663,7 @@
 					NDEBUG,
 					"NS_BLOCK_ASSERTIONS=1",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
