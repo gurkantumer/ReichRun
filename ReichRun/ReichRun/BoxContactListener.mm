@@ -18,6 +18,8 @@ void BoxContactListener::BeginContact(b2Contact* contact)
     BoxContact bxContact = { contact->GetFixtureA(), contact->GetFixtureB() };
     _contacts.push_back(bxContact);
     
+    
+    NSLog(@"contacted : %@",contact->GetFixtureA()->GetBody()->GetUserData());
     //int fixAInt = (int)contact->GetFixtureA()->GetUserData();
     //int fixBInt = (int)contact->GetFixtureB()->GetUserData();
     

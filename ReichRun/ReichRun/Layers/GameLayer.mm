@@ -18,6 +18,7 @@
 @synthesize player;
 @synthesize crossHair;
 @synthesize ground;
+@synthesize _contactListener;
 
 +(CCScene *) scene
 {
@@ -34,6 +35,9 @@
 	if( (self=[super init]) )
     {
         [self initPhysics];
+        
+        _contactListener = new BoxContactListener();
+        world->SetContactListener(_contactListener);
         
         if(!kTOGGLE_DEBUG)[NSCursor hide];
         
@@ -104,15 +108,15 @@
             
             // We know that the user data is a sprite since we set
             // it that way, so cast it...
-            //CCSprite *sprite = (CCSprite *)b->GetUserData();
+            CCSprite *sprite = (CCSprite *)b->GetUserData();
             
             // Convert the Cocos2D position/rotation of the sprite to the Box2D position/rotation
-            //b2Vec2 b2Position = b2Vec2(sprite.position.x/PTM_RATIO,
-            //                           sprite.position.y/PTM_RATIO);
-            //float32 b2Angle = -1 * CC_DEGREES_TO_RADIANS(sprite.rotation);
+            b2Vec2 b2Position = b2Vec2(sprite.position.x/PTM_RATIO,
+                                       sprite.position.y/PTM_RATIO);
+            float32 b2Angle = -1 * CC_DEGREES_TO_RADIANS(sprite.rotation);
             
             // Update the Box2D position/rotation to match the Cocos2D position/rotation
-            //b->SetTransform(b2Position, b2Angle);
+            b->SetTransform(b2Position, b2Angle);
         }
     }
 }
@@ -475,25 +479,15 @@
     spriteBodyDef.userData = sprite;
     b2Body *spriteBody = world->CreateBody(&spriteBodyDef);
     
-    b2PolygonShape spriteShape;
-    /*spriteShape.SetAsBox(sprite.contentSize.width/PTM_RATIO/2,
-     sprite.contentSize.height/PTM_RATIO/2);*/
-    int num = 6;
-    b2Vec2 verts[] = {b2Vec2(4.5f / PTM_RATIO, -17.7f / PTM_RATIO),
-        b2Vec2(20.5f / PTM_RATIO, 7.2f / PTM_RATIO),
-        b2Vec2(22.8f / PTM_RATIO, 29.5f / PTM_RATIO),
-        b2Vec2(-24.7f / PTM_RATIO, 31.0f / PTM_RATIO),
-        b2Vec2(-20.2f / PTM_RATIO, 4.7f / PTM_RATIO),
-        b2Vec2(-11.7f / PTM_RATIO, -17.5f / PTM_RATIO)};
-    spriteShape.Set(verts, num);
+    b2PolygonShape bodyBox;
+    bodyBox.SetAsBox(.40f, .60f);
     
     b2FixtureDef spriteShapeDef;
-    spriteShapeDef.shape = &spriteShape;
+    spriteShapeDef.shape = &bodyBox;
     spriteShapeDef.density = 10.0;
-    spriteShapeDef.isSensor = true;
+    spriteShapeDef.isSensor = false;
     
     spriteBody->CreateFixture(&spriteShapeDef);
-    
 }
 
 

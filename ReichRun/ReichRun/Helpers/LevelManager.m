@@ -37,10 +37,10 @@ static LevelManager *sharedManager = nil;
         
         gameAreaSize = CGSizeMake(2000, 1600);
         healthCount = 5;
-        enemyCount = 10;
+        enemyCount = 1;
         currentLevel = 1;
         
-        healthValue = 30;
+        healthValue = 0;
         dropRate = 300;
     }
     return self;
