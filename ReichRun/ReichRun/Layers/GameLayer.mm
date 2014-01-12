@@ -450,7 +450,7 @@
     
     [[LevelManager sharedManager] cleanUp];
     
-    [[CCDirector sharedDirector] replaceScene:[[SceneManager sharedSceneManager] sceneWithID:2]];
+    [[CCDirector sharedDirector] replaceScene:[[SceneManager sharedSceneManager] sceneWithID:3]];
 }
 
 - (void) dealloc

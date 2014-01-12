@@ -8,7 +8,6 @@
 
 #import "SceneManager.h"
 #import "BaseLayer.h"
-#import "GameEndLayer.h"
 
 @implementation SceneManager
 
@@ -22,6 +21,8 @@ static SceneManager *sceneManager = nil;
     {
         scenesArray = [[NSMutableArray alloc] init];
         [scenesArray addObject:@"LogoLayer"];
+        [scenesArray addObject:@"SplashLayer"];
+        [scenesArray addObject:@"MapLayer"];
         [scenesArray addObject:@"GameLayer"];
         [scenesArray addObject:@"GameEndLayer"];
     }
@@ -49,6 +50,8 @@ static SceneManager *sceneManager = nil;
 {
     NSString *sceneName = [scenesArray objectAtIndex:idNum];
     Class sceneClass = NSClassFromString(sceneName);
+    
+    NSLog(@"scene : %@",sceneName);
     
     return (BaseLayer*)[sceneClass scene];
 }

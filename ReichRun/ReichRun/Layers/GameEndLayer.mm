@@ -38,7 +38,7 @@
     NSLog(@"hello");
     [self setMouseEnabled:NO];
     
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:1] withColor:ccBLACK]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[[SceneManager sharedSceneManager] sceneWithID:2] withColor:ccBLACK]];
     return YES;
 }
 

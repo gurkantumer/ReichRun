@@ -151,6 +151,10 @@
 		73951879187100DB00D0C970 /* char.png in Resources */ = {isa = PBXBuildFile; fileRef = 73951878187100DB00D0C970 /* char.png */; };
 		7395187B1871054200D0C970 /* crosshair.png in Resources */ = {isa = PBXBuildFile; fileRef = 7395187A1871054200D0C970 /* crosshair.png */; };
 		7395187E1871315600D0C970 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7395187D1871315600D0C970 /* Enemy.m */; };
+		73C712671879BFF500B13AE5 /* SplashLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 73C712661879BFF500B13AE5 /* SplashLayer.mm */; };
+		73C712691879C55B00B13AE5 /* splashBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 73C712681879C55B00B13AE5 /* splashBg.jpg */; };
+		73C7126B1879CEC000B13AE5 /* splashLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 73C7126A1879CEC000B13AE5 /* splashLogo.png */; };
+		73C7126D1879FC3C00B13AE5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73C7126C1879FC3C00B13AE5 /* Images.xcassets */; };
 		73E63CC81878896600674490 /* Box2DConfig.cmake in Resources */ = {isa = PBXBuildFile; fileRef = 73E63C651878896500674490 /* Box2DConfig.cmake */; };
 		73E63CC91878896600674490 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 73E63C661878896500674490 /* CMakeLists.txt */; };
 		73E63CCA1878896600674490 /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 73E63C681878896500674490 /* b2BroadPhase.cpp */; };
@@ -202,6 +206,8 @@
 		73E63CFB18788C9700674490 /* LICENSE_Box2D.txt in Resources */ = {isa = PBXBuildFile; fileRef = 73E63CFA18788C9700674490 /* LICENSE_Box2D.txt */; };
 		73E63CFE1878B90B00674490 /* BoxContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = 73E63CFD1878B90B00674490 /* BoxContactListener.mm */; };
 		73E63D001878BB3700674490 /* ground2.png in Resources */ = {isa = PBXBuildFile; fileRef = 73E63CFF1878BB3700674490 /* ground2.png */; };
+		73E9BEDA187C102C00583EDE /* map.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 73E9BED9187C102C00583EDE /* map.jpg */; };
+		73E9BEDD187C103E00583EDE /* MapLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 73E9BEDC187C103E00583EDE /* MapLayer.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -510,6 +516,11 @@
 		7395187A1871054200D0C970 /* crosshair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crosshair.png; path = Resources/Images/char/crosshair.png; sourceTree = "<group>"; };
 		7395187C1871315600D0C970 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemy.h; path = ReichRun/Objects/Enemy.h; sourceTree = "<group>"; };
 		7395187D1871315600D0C970 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Enemy.m; path = ReichRun/Objects/Enemy.m; sourceTree = "<group>"; };
+		73C712651879BFF500B13AE5 /* SplashLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashLayer.h; path = Layers/SplashLayer.h; sourceTree = "<group>"; };
+		73C712661879BFF500B13AE5 /* SplashLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SplashLayer.mm; path = Layers/SplashLayer.mm; sourceTree = "<group>"; };
+		73C712681879C55B00B13AE5 /* splashBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splashBg.jpg; path = Resources/Images/misc/splashBg.jpg; sourceTree = "<group>"; };
+		73C7126A1879CEC000B13AE5 /* splashLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splashLogo.png; path = Resources/Images/misc/splashLogo.png; sourceTree = "<group>"; };
+		73C7126C1879FC3C00B13AE5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		73E63C641878896500674490 /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
 		73E63C651878896500674490 /* Box2DConfig.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Box2DConfig.cmake; sourceTree = "<group>"; };
 		73E63C661878896500674490 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
@@ -609,6 +620,9 @@
 		73E63CFC1878B90B00674490 /* BoxContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxContactListener.h; sourceTree = "<group>"; };
 		73E63CFD1878B90B00674490 /* BoxContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BoxContactListener.mm; sourceTree = "<group>"; };
 		73E63CFF1878BB3700674490 /* ground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ground2.png; path = Resources/Images/misc/ground2.png; sourceTree = "<group>"; };
+		73E9BED9187C102C00583EDE /* map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = map.jpg; path = Resources/Images/misc/map.jpg; sourceTree = "<group>"; };
+		73E9BEDB187C103E00583EDE /* MapLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapLayer.h; path = Layers/MapLayer.h; sourceTree = "<group>"; };
+		73E9BEDC187C103E00583EDE /* MapLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MapLayer.mm; path = Layers/MapLayer.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -716,6 +730,7 @@
 				7395185D1870D27400D0C970 /* Helpers */,
 				739516C81870CE4C00D0C970 /* Resources */,
 				739516D31870CE4C00D0C970 /* libs */,
+				73C7126C1879FC3C00B13AE5 /* Images.xcassets */,
 				739518471870CE4D00D0C970 /* Supporting Files */,
 			);
 			path = ReichRun;
@@ -1111,8 +1126,12 @@
 			children = (
 				7395186A1870E12700D0C970 /* BaseLayer.h */,
 				7395186B1870E12700D0C970 /* BaseLayer.mm */,
+				73E9BEDB187C103E00583EDE /* MapLayer.h */,
+				73E9BEDC187C103E00583EDE /* MapLayer.mm */,
 				7395185E1870D52200D0C970 /* LogoLayer.h */,
 				7395185F1870D52200D0C970 /* LogoLayer.mm */,
+				73C712651879BFF500B13AE5 /* SplashLayer.h */,
+				73C712661879BFF500B13AE5 /* SplashLayer.mm */,
 				7395186D1870E33E00D0C970 /* GameLayer.h */,
 				7395186E1870E33E00D0C970 /* GameLayer.mm */,
 				73080A57187612A400DF2AE5 /* GameEndLayer.h */,
@@ -1148,6 +1167,9 @@
 		739518621870D6FC00D0C970 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				73E9BED9187C102C00583EDE /* map.jpg */,
+				73C7126A1879CEC000B13AE5 /* splashLogo.png */,
+				73C712681879C55B00B13AE5 /* splashBg.jpg */,
 				736983661872B4BF004211A9 /* bullet.png */,
 				7369835E1871C4C3004211A9 /* enemy.png */,
 				736983591871B6AE004211A9 /* health.png */,
@@ -1412,9 +1434,11 @@
 				736983671872B4BF004211A9 /* bullet.png in Resources */,
 				739516CC1870CE4C00D0C970 /* InfoPlist.strings in Resources */,
 				7369835F1871C4C3004211A9 /* enemy.png in Resources */,
+				73E9BEDA187C102C00583EDE /* map.jpg in Resources */,
 				73E63CC91878896600674490 /* CMakeLists.txt in Resources */,
 				73E63CFB18788C9700674490 /* LICENSE_Box2D.txt in Resources */,
 				739518661870DB7600D0C970 /* logo@2x.png in Resources */,
+				73C7126B1879CEC000B13AE5 /* splashLogo.png in Resources */,
 				7369835A1871B6AE004211A9 /* health.png in Resources */,
 				73951879187100DB00D0C970 /* char.png in Resources */,
 				73E63CC81878896600674490 /* Box2DConfig.cmake in Resources */,
@@ -1422,6 +1446,8 @@
 				7395182B1870CE4D00D0C970 /* ChangeLog in Resources */,
 				739516CF1870CE4C00D0C970 /* MainMenu.xib in Resources */,
 				7395187B1871054200D0C970 /* crosshair.png in Resources */,
+				73C7126D1879FC3C00B13AE5 /* Images.xcassets in Resources */,
+				73C712691879C55B00B13AE5 /* splashBg.jpg in Resources */,
 				739516D11870CE4C00D0C970 /* icon.icns in Resources */,
 				73E63D001878BB3700674490 /* ground2.png in Resources */,
 			);
@@ -1434,6 +1460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E9BEDD187C103E00583EDE /* MapLayer.mm in Sources */,
 				739517971870CE4D00D0C970 /* CCTexturePVR.m in Sources */,
 				739517E71870CE4D00D0C970 /* ccUtils.c in Sources */,
 				739517381870CE4C00D0C970 /* CCLayer.m in Sources */,
@@ -1474,6 +1501,7 @@
 				739517541870CE4C00D0C970 /* CCParticleSystem.m in Sources */,
 				739517A91870CE4D00D0C970 /* CCTransition.m in Sources */,
 				739517511870CE4C00D0C970 /* CCParticleExamples.m in Sources */,
+				73C712671879BFF500B13AE5 /* SplashLayer.mm in Sources */,
 				7395174E1870CE4C00D0C970 /* CCParticleBatchNode.m in Sources */,
 				73E63CD51878896600674490 /* b2PolygonShape.cpp in Sources */,
 				73080A59187612A400DF2AE5 /* GameEndLayer.mm in Sources */,
@@ -1677,9 +1705,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ReichRun/ReichRun.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1691,15 +1720,17 @@
 				);
 				HEADER_SEARCH_PATHS = "\"ReichRun/libs/kazmath/include\"";
 				INFOPLIST_FILE = ReichRun/Resources/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = ReichRun;
+				PROVISIONING_PROFILE = "B7418500-28F5-4DAA-ACEF-12A604FB068E";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
+				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1708,9 +1739,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ReichRun/ReichRun.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ReichRun/Prefix.pch;
@@ -1721,15 +1753,17 @@
 				);
 				HEADER_SEARCH_PATHS = "\"ReichRun/libs/kazmath/include\"";
 				INFOPLIST_FILE = ReichRun/Resources/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = ReichRun;
+				PROVISIONING_PROFILE = "B7418500-28F5-4DAA-ACEF-12A604FB068E";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
+				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

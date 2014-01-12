@@ -7,7 +7,6 @@
 //
 
 #import "LogoLayer.h"
-#import "GameLayer.h"
 
 @implementation LogoLayer
 
