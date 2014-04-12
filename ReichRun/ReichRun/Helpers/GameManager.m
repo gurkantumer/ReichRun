@@ -78,6 +78,40 @@ static GameManager *manager = nil;
     isGameEnded = state;
 }
 
+/// setup
+
+
+- (int) getUserHealthCount
+{
+    return 3;
+}
+
+- (int) getEnemyCount
+{
+    return 10;
+}
+
+- (int) getCurrentLevel
+{
+    return 1;
+}
+
+- (int) getUserHealthValue
+{
+    return 10;
+}
+
+- (int) getDropRate
+{
+    return 300;
+}
+
+
+- (int) getEnemyHealth
+{
+    return 80;
+}
+
 - (void) dealloc
 {
     [super dealloc];

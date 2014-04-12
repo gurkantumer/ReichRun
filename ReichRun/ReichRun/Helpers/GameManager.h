@@ -31,4 +31,13 @@
 - (BOOL) getGameState;
 - (void) setGameState:(BOOL)state;
 
+//// SETUP
+
+- (int) getUserHealthCount;
+- (int) getEnemyCount;
+- (int) getCurrentLevel;
+- (int) getUserHealthValue;
+- (int) getDropRate;
+- (int) getEnemyHealth;
+
 @end

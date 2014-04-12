@@ -11,7 +11,7 @@
 @implementation Ground
 
 - (id)init {
-    self = [super initWithFile:@"ground2.png"];
+    self = [super initWithFile:@"ground.png"];
     if( self != nil ) {
         [self setAnchorPoint:CGPointMake(0, 0)];
         [self setPosition:CGPointMake(0, 0)];

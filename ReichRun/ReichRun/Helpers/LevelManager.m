@@ -36,12 +36,12 @@ static LevelManager *sharedManager = nil;
         enemyBulletArray = [[NSMutableArray alloc] init];
         
         gameAreaSize = CGSizeMake(2000, 1600);
-        healthCount = 5;
-        enemyCount = 1;
-        currentLevel = 1;
+        healthCount = [[GameManager sharedManager] getUserHealthCount];
+        enemyCount = [[GameManager sharedManager] getEnemyCount];
+        currentLevel = [[GameManager sharedManager] getCurrentLevel];
         
-        healthValue = 0;
-        dropRate = 300;
+        healthValue = [[GameManager sharedManager] getUserHealthValue];
+        dropRate = [[GameManager sharedManager] getDropRate];
     }
     return self;
 }

@@ -8,6 +8,7 @@
 
 #import "Creature.h"
 #import "LevelManager.h"
+#import "GameManager.h"
 
 @implementation Creature
 
@@ -25,7 +26,7 @@
 
 - (void) prepare
 {
-    health = 100;
+    health = [[GameManager sharedManager] getEnemyHealth];
 }
 
 - (void) fireBullet:(CGPoint)point atLayer:(BaseLayer*)lyr
@@ -94,9 +95,9 @@
 {
     health += hValue;
     
-    if (health >100)
+    if (health > [[GameManager sharedManager] getEnemyHealth])
     {
-        health = 100;
+        health = [[GameManager sharedManager] getEnemyHealth];
     }
     
     if (health<=0)

@@ -45,12 +45,11 @@
     
     id delay = [CCDelayTime actionWithDuration:2];
     id action1 = [CCFadeIn actionWithDuration:1.0]; // fading in
-    id action2 = [CCFadeOut actionWithDuration:1.0]; //fading out
-    id call = [CCCallFunc actionWithTarget:self selector:@selector(animateLogoEnded)];
+//    id action2 = [CCFadeOut actionWithDuration:1.0]; //fading out
+//    id call = [CCCallFunc actionWithTarget:self selector:@selector(animateLogoEnded)];
     CCSequence* sequence = [CCSequence actions:delay,action1, nil];
     
     [mapBg runAction:sequence];
-    
     
 }
 
