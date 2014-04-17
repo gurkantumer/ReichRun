@@ -35,7 +35,7 @@ static LevelManager *sharedManager = nil;
         bulletArray = [[NSMutableArray alloc] init];
         enemyBulletArray = [[NSMutableArray alloc] init];
         
-        gameAreaSize = CGSizeMake(2000, 1600);
+        gameAreaSize = [[GameManager sharedManager] getLevelSize];
         healthCount = [[GameManager sharedManager] getUserHealthCount];
         enemyCount = [[GameManager sharedManager] getEnemyCount];
         currentLevel = [[GameManager sharedManager] getCurrentLevel];

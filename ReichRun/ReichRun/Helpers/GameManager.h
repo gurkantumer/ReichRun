@@ -33,6 +33,7 @@
 
 //// SETUP
 
+- (CGSize) getLevelSize;
 - (int) getUserHealthCount;
 - (int) getEnemyCount;
 - (int) getCurrentLevel;

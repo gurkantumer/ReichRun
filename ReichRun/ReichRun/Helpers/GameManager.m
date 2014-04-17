@@ -80,6 +80,10 @@ static GameManager *manager = nil;
 
 /// setup
 
+- (CGSize) getLevelSize
+{
+    return CGSizeMake(2000, 1000);
+}
 
 - (int) getUserHealthCount
 {
@@ -105,7 +109,6 @@ static GameManager *manager = nil;
 {
     return 300;
 }
-
 
 - (int) getEnemyHealth
 {
